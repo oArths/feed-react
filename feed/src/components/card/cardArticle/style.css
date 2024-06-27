@@ -1,0 +1,97 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 600px;
+    background-color: white;
+    border-top: 0.5px solid #ccc;
+    /* border-top: 0.5px solid #ccc; */
+    gap: 20px;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    align-items: center;
+    height: 60px;
+}
+.user{
+
+}
+.Option{
+    display: flex;
+    justify-content: right;
+    width: 40px;
+    /* background-color: aqua; */
+}
+.more{
+    transform: rotate(90deg);
+}
+.title{
+    padding-bottom: 15px;
+    display:  flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    font-size: 15px;
+    font-weight: normal;
+    overflow: hidden;
+
+}
+.titleText{
+    width: 90%;
+    padding: 10px;
+    word-break: break-all;
+}
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: 300px;
+}
+.ImgTag{
+    width: 90%;
+    max-height: 100%;
+    border-radius: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.description{
+    padding-top: 15px;
+    display:  flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 190px;
+    font-size: 15px;
+    font-weight: normal;
+    overflow: hidden;
+}
+.descriptionText{
+    width: 90%;
+    padding: 10px;
+    word-break: break-all;
+}
+.comentarios{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60px;
+    padding-bottom: 10px;
+}
+.commetsContainer{
+    /* display: ; */
+    width: 85%;
+
+}
+.icon{
+ width: 20px;
+ transform: scaleX(1);
+}
