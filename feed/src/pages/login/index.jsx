@@ -1,33 +1,71 @@
 import { useState } from 'react';
-import  './style.css';
+import { useToken } from '../../context/UseToken';
+import './style.css';
 
 
 
-export default function  Login (){
+export default function Login() {
 
-   const [values, setValues] = useState({
-    username : "",
-    email : "",
-    password: "",
-   })
+    const [error, setError] = useState({})
+    const [ , setToken] = useToken()
+    const [values, setValues] = useState({
+        email: "teste@gmail2.com",
+        password: "aaaaaaaa2",
+    })
 
- const Subbimt = () => {
-    
-    console.log(values)
 
- }
-    return(
+
+    const Subbimt = () => {
+        fetch('http://127.0.0.1:8000/api/siguin',{
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json',
+
+            },
+            body: JSON.stringify(values),
+        })
+        .then(response =>{
+            if(!response.ok){
+                return response.json().then(errorData => {
+                    throw errorData;
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            const newtoken =  data.token.split(" ")
+            // console.log( 'ds', newtoken)
+            setToken(newtoken[1])
+            window.location.href = '/home'
+            setError({});  
+        })
+        .catch(error => {
+            setError(error.error || {});
+            console.error('Error:', error.error);
+        });
+    }
+
+    return (
         <div className="Body">
-            <div className="main">
+            <div className="container">
                 <div className="inputsContainer">
                     <div className="titlepage">
                         Login
+                        <div className="subtitle">Entre com seus dados e tenha acesso a um mundo de possibilidades.</div>
                     </div>
-                    <input type='text' onChange={(e)=>setValues({...values, username: e.target.value})} placeholder='User Name' className='inputLogin'/>
-                    <input type='email' onChange={(e)=>setValues({...values, email: e.target.value})} placeholder='E-mail anddres' className='inputLogin'/>
-                    <input type='password'onChange={(e)=>setValues({...values, password: e.target.value})} placeholder='Password' className='inputLogin'/>
+
+                    <div className="conteinerInpits">
+                    <input type='email' onChange={(e) => setValues({ ...values, email: e.target.value })} placeholder='E-mail' className='inputLogin' />
+                    <div className="error">{error && <div>{error.email}</div>}</div>
+                    </div>
+
+                    <div className="conteinerInpits">
+                    <input type='password' onChange={(e) => setValues({ ...values, password: e.target.value })} placeholder='Senha' className='inputLogin' />
+                    <div className="error">{error && <div>{error.password}</div>}</div>
+                    </div>
+
                     <button className='buttonlogin' onClick={Subbimt}>Entrar</button>
-                    <div className="forgot">Not a member yet? <a href="" className="sing">Sing Up</a></div>
+                    <div className="forgot">Não é membro? <a href="/cadastro" className="sing">Cadastre-se </a></div>
                 </div>
             </div>
         </div>
