@@ -1,0 +1,11 @@
+.body{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    background-color: rgb(77, 204, 204);
+}
+.feed{
+    width: 30vw;
+    height: 100%;
+}
