@@ -81,17 +81,30 @@
 .comentarios{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     width: 100%;
     height: 60px;
     padding-bottom: 10px;
+    gap: 10px
 }
 .commetsContainer{
-    /* display: ; */
-    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    /* background-color: aqua; */
+    gap: 2px;
+    
+    &:first-child{
+        margin-left: 25px;
 
+    }
 }
+
 .icon{
  width: 20px;
  transform: scaleX(1);
+}
+.info{
+    font-size: 13px;
 }

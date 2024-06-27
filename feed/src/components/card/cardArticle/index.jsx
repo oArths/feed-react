@@ -1,6 +1,7 @@
 import "./style.css"
 import More from "../../../assests/imgs/more-vert.svg"
 import Comments from "../../../assests/imgs/comments.svg"
+import Heart from "../../../assests/imgs/heart.svg"
 
 
 export default function CardAricle({Description,Title, User}) {
@@ -35,7 +36,12 @@ export default function CardAricle({Description,Title, User}) {
             </div>
             <div className="comentarios">
                 <div className="commetsContainer">
+                <img className="icon" src={Heart}/>
+                <div className="info">12</div>
+                </div>
+                <div className="commetsContainer">
                 <img className="icon" src={Comments}/>
+                <div className="info">79</div>
                 </div>
                 
             </div>
