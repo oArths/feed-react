@@ -1,0 +1,60 @@
+
+.blur{
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.479);
+    backdrop-filter: blur(5px);
+    position: absolute;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+}
+.containerModal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    top: 40%;
+    left: 42%;
+    z-index: 11;
+    border-radius: 10px;
+    gap: 20px;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    width: 80%;
+}
+.Title{
+    font-size: 20px;
+    font-weight: bold;
+}
+.SubTitle{
+    word-wrap: break-word;
+    font-weight: lighter;
+    font-size: 15px;
+    color: #acabab;
+
+}
+.Button{
+    font-size: 15px;
+    color: white;
+    border-radius: 5px;
+    width: 80%;
+    height: 40px;
+    border: none;
+    /* background-color: rgb(44, 73, 204); */
+    background-color: black;
+    transition: all 0.3s ease;
+
+    &:active{
+        font-size: 15px;
+        width: 78%;
+    }
+}
