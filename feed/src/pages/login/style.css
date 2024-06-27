@@ -1,0 +1,71 @@
+.Body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ccc;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+   align-items: center;
+    height: 55vh;
+    width: 400px;
+    background-color: white;
+    border-radius: 10px;
+}
+.titlepage{
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 40px;
+}
+.inputsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+    gap: 30px;
+
+}
+
+.inputLogin{
+    width: 95%;
+    padding: 10px;
+    height: 20px;
+    border-radius: 5px;
+    border: 0.5px solid #acabab;
+    outline:none;
+    color: black;
+}
+.title{
+    font-weight: normal;
+}
+
+.buttonlogin{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: semibold;
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+
+    &:active{
+        font-size: 15px;
+        width: 97%;
+    }
+}
+.forgot{
+    font-size: 14px;
+}
+.sing{
+    text-decoration: none;
+}
