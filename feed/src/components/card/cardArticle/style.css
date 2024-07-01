@@ -18,14 +18,31 @@
     align-items: center;
     height: 60px;
 }
+.userConatiner{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
 .user{
 
 }
+.UserPhoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    border: 0.5px solid #ccc;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
 .Option{
     display: flex;
     justify-content: right;
     width: 40px;
-    /* background-color: aqua; */
 }
 .more{
     transform: rotate(90deg);

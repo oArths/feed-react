@@ -4,7 +4,7 @@ import Comments from "../../../assests/imgs/comments.svg"
 import Heart from "../../../assests/imgs/heart.svg"
 
 
-export default function CardAricle({Description,Title, User}) {
+export default function CardAricle({Description,Title, User, UserImage, IsUser}) {
 
     const truncateText = (text, maxLength, ) => {
         if (!text) return 'undefind key'; 
@@ -13,13 +13,20 @@ export default function CardAricle({Description,Title, User}) {
         }
         return text;
       };
+
     return (
         <div className="card">
             <div className="header">
-                <div className="user">{truncateText(User, 20)}</div>
-                <div className="Option">
+                <div className="userConatiner">
+                    <div className="UserPhoto">
+                        <img  src={UserImage} />
+                    </div>
+                    <div className="UserName">{truncateText(User, 20)}</div>
+                    </div>
+              {IsUser &&   
+              <div className="Option">
                     <img className="more" src={More} />
-                </div>
+                </div>}
             </div>
             <div className="title">
                 <div className="titleText">
