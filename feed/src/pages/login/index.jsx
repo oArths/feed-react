@@ -7,7 +7,7 @@ import './style.css';
 export default function Login() {
 
     const [error, setError] = useState({})
-    const [ , setToken] = useToken()
+    const [ token , setToken] = useToken()
     const [values, setValues] = useState({
         email: "teste@gmail2.com",
         password: "aaaaaaaa2",
@@ -33,9 +33,10 @@ export default function Login() {
             return response.json();
         })
         .then(data => {
-            const newtoken =  data.token.split(" ")
+            const newtoken =  data.token
+            setToken(newtoken)
             // console.log( 'ds', newtoken)
-            setToken(newtoken[1])
+            // console.log(token)
             window.location.href = '/home'
             setError({});  
         })

@@ -9,7 +9,7 @@ export default function Cadastro() {
 
     const [error, setError] = useState({})
     const [, setToken] = useToken()
-    const [ModalOpen, setOpenModal] = useState(true);
+    const [ModalOpen, setOpenModal] = useState(false);
     const [values, setValues] = useState({
         username: "",
         email: "",
