@@ -1,23 +1,22 @@
 import "./style.css"
 import home from "../../../assests/imgs/home-alt.svg"
-import logout from "../../../assests/imgs/log-out.svg"
 import plus from "../../../assests/imgs/plus-circle.svg"
 
-export default function HeaderHome ({onclickPlus, onclickHome, onclickPerfil}) {
-    return(
+
+export default function HeaderHome({ UserPerfil, onclickPlus, onclickHome, onclickPerfil }) {
+
+    return (
         <div className="Conatiner">
             <div className="Home" onClick={onclickHome}>
-                <img src={home}/>
+                <img className="img" src={home} />
             </div>
             <div className="Home" onClick={onclickPlus}>
-            <img src={plus}/>
+                <img className="img" src={plus} />
             </div>
             <div className="perfil" onClick={onclickPerfil}>
-            <img src={home}/>
+                <img src={UserPerfil} />
             </div>
-            {/* <div className="Home">
-                <img src={logout}/>
-            </div> */}
+
         </div>
     )
 }

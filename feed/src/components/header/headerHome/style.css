@@ -14,8 +14,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    /* background-color: aqua; */
+    transition: all 0.3s ease;
+    border-radius: 10%;
+    cursor: pointer;
+    
+
+    &:hover {
+        background-color: #e0e0e0;
+
+    }
 }
 .perfil{
     display: flex;
@@ -26,10 +36,12 @@
    height: 40px;
     border-radius: 50%;
     overflow: hidden;
+    cursor: pointer;
+
 }
 .img{
-   width: 40px;
-    height: 40px;
+   width: 30px;
+    height: 30px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
