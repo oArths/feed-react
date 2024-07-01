@@ -4,29 +4,29 @@ import Comments from "../../../assests/imgs/comments.svg"
 import Heart from "../../../assests/imgs/heart.svg"
 
 
-export default function CardAricle({Description,Title, User, UserImage, IsUser}) {
+export default function CardAricle({ Description, Title, User, UserImage, IsUser, onclickOptins, onclickHeart, onclickComments }) {
 
-    const truncateText = (text, maxLength, ) => {
-        if (!text) return 'undefind key'; 
+    const truncateText = (text, maxLength,) => {
+        if (!text) return 'undefind key';
         if (text.length > maxLength) {
-          return text.substring(0, maxLength) + '...';
+            return text.substring(0, maxLength) + '...';
         }
         return text;
-      };
+    };
 
     return (
         <div className="card">
             <div className="header">
                 <div className="userConatiner">
                     <div className="UserPhoto">
-                        <img  src={UserImage} />
+                        <img src={UserImage} />
                     </div>
                     <div className="UserName">{truncateText(User, 20)}</div>
-                    </div>
-              {IsUser &&   
-              <div className="Option">
-                    <img className="more" src={More} />
-                </div>}
+                </div>
+                {IsUser &&
+                    <div className="Option" onClick={onclickOptins}>
+                        <img className="more" src={More} />
+                    </div>}
             </div>
             <div className="title">
                 <div className="titleText">
@@ -43,14 +43,18 @@ export default function CardAricle({Description,Title, User, UserImage, IsUser})
             </div>
             <div className="comentarios">
                 <div className="commetsContainer">
-                <img className="icon" src={Heart}/>
-                <div className="info">12</div>
+                    <div className="Houver">
+                        <img className="icon" src={Heart} onClick={onclickHeart} />
+                    </div>
+                    <div className="info">12</div>
                 </div>
                 <div className="commetsContainer">
-                <img className="icon" src={Comments}/>
-                <div className="info">79</div>
+                    <div className="Houver">
+                        <img className="icon" src={Comments} onClick={onclickComments} />
+                    <div className="info">79</div>
+                    </div>
                 </div>
-                
+
             </div>
         </div>
     )
