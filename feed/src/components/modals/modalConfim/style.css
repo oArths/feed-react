@@ -1,13 +1,14 @@
-
-.blur{
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.479);
-    backdrop-filter: blur(5px);
-    position: absolute;
+.main{
+    position: fixed;
     z-index: 10;
+    background-color: rgba(0, 0, 0, 0.479);
     width: 100vw;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
 }
 .containerModal{
     display: flex;
@@ -17,10 +18,6 @@
     background-color: white;
     width: 300px;
     height: 200px;
-    position: absolute;
-    top: 40%;
-    left: 42%;
-    z-index: 11;
     border-radius: 10px;
     gap: 20px;
 }
@@ -49,7 +46,6 @@
     width: 80%;
     height: 40px;
     border: none;
-    /* background-color: rgb(44, 73, 204); */
     background-color: black;
     transition: all 0.3s ease;
 
