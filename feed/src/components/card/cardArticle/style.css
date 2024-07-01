@@ -137,7 +137,8 @@
 
     }
 }
-.Houver{
+
+.Houver {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -154,11 +155,12 @@
     }
 
 }
+
 .icon {
     width: 20px;
     height: 20px;
     transform: scaleX(1);
-   
+
 }
 
 .info {
