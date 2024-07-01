@@ -9,14 +9,14 @@ export default function Cadastro() {
 
     const [error, setError] = useState({})
     const [, setToken] = useToken()
-    const [ModalOpen, setOpenModal] = useState(false);
+    const [ModalOpen, setOpenModal] = useState(true);
     const [values, setValues] = useState({
         username: "",
         email: "",
         password: "",
     })
     const redrection = () => {
-        window.location.href = 'https://www.youtube.com/watch?v=wiIbol5tZaI'
+        window.location.href = '/'
     }
 
 
