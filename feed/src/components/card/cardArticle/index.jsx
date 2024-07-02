@@ -40,8 +40,8 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
                 <div className="commetsContainer">
                     <div className="Houver">
                         <img className="icon" src={Heart} onClick={onclickHeart} />
+                        <div className="info">12</div>
                     </div>
-                    <div className="info">12</div>
                 </div>
                 <div className="commetsContainer">
                     <div className="Houver">
