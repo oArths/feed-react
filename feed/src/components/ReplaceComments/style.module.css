@@ -1,0 +1,74 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 600px;
+    height: auto;
+}
+.Header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background-color: white
+}
+.Title{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border-top: 0.5px solid #ccc;
+    width: 90%;
+    height: 50px;
+    font-weight: bold;
+}
+
+.ConatinerCommentarios{
+    border: 0.5px solid #ccc;
+    padding: 10px;
+    width: 97%;
+    height: 100px;
+    background-color: white;
+
+}
+.userConatiner {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+
+.UserPhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid #ccc;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.ImgeUser{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+.input {
+width: 350px;
+   height: 70px;
+    border: none;
+    outline: none;
+    resize: none;
+    background-color: white;
+}
