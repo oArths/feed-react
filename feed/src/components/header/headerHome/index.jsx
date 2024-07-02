@@ -14,7 +14,7 @@ export default function HeaderHome({ UserPerfil, onclickPlus, onclickHome, oncli
                 <img className="img" src={plus} />
             </div>
             <div className="perfil" onClick={onclickPerfil}>
-                <img src={UserPerfil} />
+                <img  className="ImgeUser" src={UserPerfil} />
             </div>
 
         </div>

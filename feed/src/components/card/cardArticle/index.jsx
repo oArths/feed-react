@@ -19,7 +19,7 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
             <div className="header">
                 <div className="userConatiner">
                     <div className="UserPhoto">
-                        <img src={UserImage} />
+                        <img  className="ImgeUser" src={UserImage} />
                     </div>
                     <div className="UserName">{truncateText(User, 20)}</div>
                 </div>
