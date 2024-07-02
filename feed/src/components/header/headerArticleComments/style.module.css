@@ -1,0 +1,46 @@
+.Conatiner{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    background-color:  rgb(241, 241, 241);
+    position: fixed;
+    top: 0;
+    gap: 100px;
+}
+.Option{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+.Home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 0.5px solid #ccc;
+    margin-right: 550px;
+}
+.img{
+    width: 20px;
+    height: 20px;
+}
+.Title{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+   height: 40px;
+
+
+}
