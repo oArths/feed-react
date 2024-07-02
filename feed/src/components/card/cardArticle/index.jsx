@@ -38,14 +38,14 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
             </div>
             <div className="comentarios">
                 <div className="commetsContainer">
-                    <div className="Houver">
-                        <img className="icon" src={Heart} onClick={onclickHeart} />
+                    <div className="Houver" onClick={onclickHeart}>
+                        <img className="icon" src={Heart}  />
                         <div className="info">12</div>
                     </div>
                 </div>
                 <div className="commetsContainer">
-                    <div className="Houver">
-                        <img className="icon" src={Comments} onClick={onclickComments} />
+                    <div className="Houver" onClick={onclickComments}>
+                        <img className="icon" src={Comments}  />
                     <div className="info">79</div>
                     </div>
                 </div>
