@@ -45,7 +45,6 @@
     gap: 10px;
 }
 
-.user {}
 
 .UserPhoto {
     display: flex;
@@ -84,11 +83,10 @@
 }
 .input{
     min-width: 90%;
-    max-width: 350px; /* Define a largura fixa */
+    max-width: 350px;
     max-height: 70px;    
     min-height: 70px;    
-    overflow-wrap: break-word;  
-      border: none;
+    border: none;
     outline: none;
     resize: none;
 }
@@ -97,8 +95,9 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
+    padding-top: 20px;
     gap: 25px;
-    width: 85%;
+    width: 90%;
     align-items: center;
 }
 .ConatinerImage{
@@ -133,9 +132,9 @@
     border-radius: 20px;
 }
 .Close{
-    position: fixed;
-    top: 18.5vw;
-    right: 80vh;
+    position: absolute;
+    top: 165px;
+    right: 30px;
     width: 25px;    
     height: 25px;
     background-color: #ccccccc4;

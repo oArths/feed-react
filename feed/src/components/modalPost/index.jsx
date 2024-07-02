@@ -13,6 +13,7 @@ import { useState } from "react"
 export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User }) {
 
     const [image, setImage] = useState(null)
+    const [tag, setTag] = useState("")
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -21,6 +22,10 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
         }
         return text;
     };
+    const CreateTag = () => {
+        console.log(tag)
+    }
+
     const openFileSelector = () => {
         document.querySelector(".input-files").click();
     };
@@ -61,19 +66,20 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
                                 }
                             }}
                         />
-                       <div className={styles.Option}>
-                       <div className={styles.ConatinerImage} onClick={openFileSelector}>
-                            <img className={styles.FolderIcon} src={Photo} />
-                        </div>
-                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
-                            <img className={styles.FolderIcon} src={Hashtag} />
-                        </div>
-                       </div>
                     </>
                     ) : (<div className={styles.ImageRender}>
                                 <img className={styles.Close} src={Close} onClick={closeImage} />
                                 <img src={image} className={styles.imageFull} />
                     </div>)}
+                    <div className={styles.Option}>
+                       {!image && 
+                       <div className={styles.ConatinerImage} onClick={openFileSelector}>
+                            <img className={styles.FolderIcon} src={Photo} />
+                        </div>}
+                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
+                            <img className={styles.FolderIcon} src={Hashtag} />
+                        </div>
+                       </div>
                     <div className={styles.ConatinerButton}>
                         <button onClick={Subbmit}>Publicar</button>
                     </div>

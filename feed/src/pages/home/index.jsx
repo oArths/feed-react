@@ -4,11 +4,13 @@ import Heart from "../../assests/imgs/heart.svg"
 import HeaderHome from "../../components/header/headerHome"
 import DropDownHeader from "../../components/dropdown/dropdownHeader/index.jsx"
 import ModalPost from "../../components/modalPost/index.jsx"
+import ModalDeltePost from "../../components/modals/modalDeletePost/index.jsx"
 import "./style.css"
 
 export default function Home (){
     const [DropDownOpen, setDropDownOpen] = useState(false) 
     const [CreateOpen, setCreateOpen] = useState(true) 
+    const [ModalOpen, setOpenModal] = useState(false);
 
 
 
@@ -45,7 +47,15 @@ export default function Home (){
 "/>          
             </div>
             <DropDownHeader IsOpen={DropDownOpen} Blur={() => setDropDownOpen(!DropDownOpen)} />
-                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setCreateOpen(!CreateOpen)} />
+                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setOpenModal(true)} />
+                <ModalDeltePost 
+            title="Descartar Publicação?" 
+            Confirm="Descartar"
+            Delete="Não"
+            isOpen={ModalOpen}
+            onClick={() => setCreateOpen(!CreateOpen)}
+            setOpenModal={() => setOpenModal(!ModalOpen)}
+            />  
         </div>
     )
 }
