@@ -4,7 +4,7 @@ import Comments from "../../../assests/imgs/comments.svg"
 import Heart from "../../../assests/imgs/heart.svg"
 
 
-export default function CardAricle({ Description, Title, User, UserImage, IsUser, onclickOptins, onclickHeart, onclickComments }) {
+export default function CardAricle({ Title, User, UserImage, IsUser, onclickOptins, onclickHeart, onclickComments }) {
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -35,11 +35,6 @@ export default function CardAricle({ Description, Title, User, UserImage, IsUser
             </div>
             <div className="image">
                 <img className="ImgTag" src="https://www.macetesdemae.com/wp-content/uploads/2014/01/Auau.jpg" />
-            </div>
-            <div className="description">
-                <div className="descriptionText">
-                    {truncateText(Description, 250)}
-                </div>
             </div>
             <div className="comentarios">
                 <div className="commetsContainer">
