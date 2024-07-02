@@ -14,11 +14,6 @@ export default function ReplaceComments({ UserImage, User, onclickHeart, onclick
 
     return (
         <div className={styles.container}>
-            <div className={styles.Header}>
-                <div className={styles.Title}>
-                    Respostas
-                </div>
-            </div>
             <div className={styles.ConatinerCommentarios}>
                 <div className={styles.userConatiner}>
                     <div className={styles.UserPhoto}>
@@ -27,23 +22,23 @@ export default function ReplaceComments({ UserImage, User, onclickHeart, onclick
                     <div className="UserName">{truncateText(User, 20)}</div>
                 </div>
                 <div className={styles.title}>
-                        <textarea className={styles.input} type="text" maxLength={200}  value="sdkhdihds" disabled />
-                    </div>
-                    <div className="comentarios">
-                <div className="commetsContainer">
-                    <div className="Houver">
-                        <img className="icon" src={Heart} onClick={onclickHeart} />
-                        <div className="info">12</div>
-                    </div>
+                    <textarea className={styles.input} type="text" maxLength={200} value="asaas" disabled />
                 </div>
-                <div className="commetsContainer">
-                    <div className="Houver">
-                        <img className="icon" src={Comments} onClick={onclickComments} />
-                    <div className="info">79</div>
+                <div className={styles.comentarios}>
+                    <div className={styles.commetsContainer}>
+                        <div className={styles.Houver}>
+                            <img className={styles.icon} src={Heart} onClick={onclickHeart} />
+                            <div className={styles.info}>12</div>
+                        </div>
                     </div>
-                </div>
+                    <div className={styles.commetsContainer}>
+                        <div className={styles.Houver}>
+                            <img className={styles.icon} src={Comments} onClick={onclickComments} />
+                            <div className={styles.info}>79</div>
+                        </div>
+                    </div>
 
-            </div>
+                </div>
             </div>
         </div>
     )
