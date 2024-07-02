@@ -26,14 +26,14 @@ export default function ReplaceComments({ UserImage, User, onclickHeart, onclick
                 </div>
                 <div className={styles.comentarios}>
                     <div className={styles.commetsContainer}>
-                        <div className={styles.Houver}>
-                            <img className={styles.icon} src={Heart} onClick={onclickHeart} />
+                        <div className={styles.Houver} onClick={onclickHeart}>
+                            <img className={styles.icon} src={Heart}  />
                             <div className={styles.info}>12</div>
                         </div>
                     </div>
                     <div className={styles.commetsContainer}>
-                        <div className={styles.Houver}>
-                            <img className={styles.icon} src={Comments} onClick={onclickComments} />
+                        <div className={styles.Houver} onClick={onclickComments}>
+                            <img className={styles.icon} src={Comments}  />
                             <div className={styles.info}>79</div>
                         </div>
                     </div>
