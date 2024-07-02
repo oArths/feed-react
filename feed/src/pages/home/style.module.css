@@ -8,7 +8,11 @@
     background-color:  rgb(241, 241, 241);
 }
 .feed{
-    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
     width: 30vw;
     height: 100%;
 }
