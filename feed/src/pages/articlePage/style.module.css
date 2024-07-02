@@ -1,10 +1,9 @@
 .body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 100%;
-    height: auto;
+    min-height: 100vh;
     background-color:  rgb(241, 241, 241);
 }
 .feed{
