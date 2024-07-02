@@ -10,9 +10,8 @@ import Trash from "../../assests/imgs/trash-solid.svg"
 
 import { useState } from "react"
 
-export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User }) {
+export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User,setImage,image  }) {
 
-    const [image, setImage] = useState(null)
     const [tag, setTag] = useState("")
 
     const truncateText = (text, maxLength,) => {
@@ -29,6 +28,7 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
     const openFileSelector = () => {
         document.querySelector(".input-files").click();
     };
+
 
     const closeImage = () => {
         setImage(null);

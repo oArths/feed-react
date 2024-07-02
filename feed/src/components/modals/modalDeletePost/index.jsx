@@ -8,8 +8,8 @@ export default function ModalDeltePost({ title, isOpen, onClickDelete, Delete, o
                 <div className={styles.containerModal}>
                         <div className={styles.Title}>{title}</div>
                     <div className={styles.ConatinerModal}>
-                        <button onClick={onClickDelete} className={styles.Button}>{Delete}</button>
                         <button onClick={onClickConfirm} className={styles.Button}>{Confirm}</button>
+                        <button onClick={onClickDelete} className={styles.Button}>{Delete}</button>
                     </div>
                 </div>
             </div>
