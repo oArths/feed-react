@@ -45,7 +45,7 @@ export default function Home (){
 "/>          
             </div>
             <DropDownHeader IsOpen={DropDownOpen} Blur={() => setDropDownOpen(!DropDownOpen)} />
-                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen) } />
+                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setCreateOpen(!CreateOpen)} />
         </div>
     )
 }
