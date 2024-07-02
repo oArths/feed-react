@@ -24,4 +24,5 @@
 *{
     font-family: 'Inter';
     margin: 0;
+    user-select: none;
 }
