@@ -11,6 +11,7 @@ export default function Home (){
     const [DropDownOpen, setDropDownOpen] = useState(false) 
     const [CreateOpen, setCreateOpen] = useState(true) 
     const [ModalOpen, setOpenModal] = useState(false);
+    const [image, setImage] = useState(null)
 
 
 
@@ -47,14 +48,14 @@ export default function Home (){
 "/>          
             </div>
             <DropDownHeader IsOpen={DropDownOpen} Blur={() => setDropDownOpen(!DropDownOpen)} />
-                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setOpenModal(true)} />
+                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setOpenModal(true)}  setImage={setImage} image={image}/>
                 <ModalDeltePost 
             title="Descartar Publicação?" 
-            Confirm="Descartar"
-            Delete="Não"
+            Confirm="Não"
+            onClickConfirm={() => setOpenModal(!ModalOpen)}
+            Delete="Descartar"
+            onClickDelete={() =>(setCreateOpen(!CreateOpen), setOpenModal(!ModalOpen), setImage(null)) }
             isOpen={ModalOpen}
-            onClick={() => setCreateOpen(!CreateOpen)}
-            setOpenModal={() => setOpenModal(!ModalOpen)}
             />  
         </div>
     )
