@@ -9,7 +9,7 @@ import "./style.css"
 
 export default function Home (){
     const [DropDownOpen, setDropDownOpen] = useState(false) 
-    const [CreateOpen, setCreateOpen] = useState(true) 
+    const [CreateOpen, setCreateOpen] = useState(false) 
     const [ModalOpen, setOpenModal] = useState(false);
     const [image, setImage] = useState(null)
 

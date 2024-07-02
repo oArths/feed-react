@@ -1,4 +1,4 @@
-.blur{
+.blur {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,6 +10,7 @@
     background-color: rgba(0, 0, 0, 0.418);
 
 }
+
 .Conatiner {
     display: flex;
     align-items: center;
@@ -24,7 +25,8 @@
     border-radius: 10px;
 
 }
-.header{
+
+.header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,6 +38,7 @@
     border-bottom: 1px solid #ccc;
 
 }
+
 .userConatiner {
     width: 90%;
     display: flex;
@@ -55,43 +58,47 @@
     height: 30px;
     border-radius: 50%;
 }
-.header div{
+
+.header div {
     font-size: 20px;
     font-weight: bold;
-    
+
 }
-.imageContainer{
+
+.imageContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 30px;
-        margin-right: 20px;
+    margin-right: 20px;
 }
 
-.img{
- color: red;
- width: 30px;
- height: 30px;
+.img {
+    color: red;
+    width: 30px;
+    height: 30px;
 
 }
-.title{
+
+.title {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 
 }
-.input{
+
+.input {
     min-width: 90%;
     max-width: 350px;
-    max-height: 70px;    
-    min-height: 70px;    
+    max-height: 70px;
+    min-height: 70px;
     border: none;
     outline: none;
     resize: none;
 }
 
-.Option{
+.Option {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -100,16 +107,19 @@
     width: 90%;
     align-items: center;
 }
-.ConatinerImage{
+
+.ConatinerImage {
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
 }
-.ConatinerImage div{
+
+.ConatinerImage div {
     font-size: 12px;
 }
-.ImageRender{
+
+.ImageRender {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,38 +128,41 @@
     width: 90%;
     height: 300px;
     padding: 5px;
-    border-radius: 10px;    
-    &:first-child{
+    border-radius: 10px;
+
+    &:first-child {
         margin-right: 300px;
     }
 }
-.imageFull{
+
+.imageFull {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-.ConatinerImage img{
+
+.ConatinerImage img {
     border-radius: 20px;
 }
-.Close{
+
+.Close {
     position: absolute;
     top: 165px;
     right: 30px;
-    width: 25px;    
+    width: 25px;
     height: 25px;
     background-color: #ccccccc4;
-    border: 0.5px solid rgba(139, 137, 137, 0.486); 
+    border: 0.5px solid rgba(139, 137, 137, 0.486);
     border-radius: 10px;
 }
 
-.FolderIcon{
-   opacity: 50%;
+.FolderIcon {
+    opacity: 50%;
     width: 25px;
     height: 25px;
 }
 
-.ConatinerButton
-{
+.ConatinerButton {
     display: flex;
     align-items: center;
     justify-content: right;
@@ -157,7 +170,8 @@
     padding-top: 10px;
     padding-bottom: 20px;
 }
-.ConatinerButton button{
+
+.ConatinerButton button {
     cursor: pointer;
     width: 100px;
     height: 35px;
@@ -168,7 +182,8 @@
     background-color: white;
     outline: none;
 }
-.Description{
+
+.Description {
     margin-top: 30px;
     height: 200px;
     width: 100%;
