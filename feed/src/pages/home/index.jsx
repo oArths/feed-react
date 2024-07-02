@@ -27,6 +27,7 @@ export default function Home (){
             <CardAricle 
             IsUser={true}
             UserImage={Heart}
+            onclickComments={() => (window.location.href = '/home/article')}
             User="hehehe"
             Title="Est qui aut harum est corrupti modi omnis. Blanditjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhddddddddddddddddddddddddddddddddddddhhhiis occaecati rerum soluta et quos. Cupiditate nostrum placeat est ducimus iusto repudiandae. Iure nostrum explicabo tempore rerum tenetur aut.
 "/>
