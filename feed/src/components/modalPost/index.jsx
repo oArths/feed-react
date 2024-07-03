@@ -1,16 +1,12 @@
 import styles from "./style.module.css"
 import Close from "../../assests/imgs/xmark.svg"
-import Folder from "../../assests/imgs/folder-plus.svg"
-import Empty from "../../assests/imgs/empty-page.svg"
 import Photo from "../../assests/imgs/media-image-list.svg"
 import Hashtag from "../../assests/imgs/hashtag.svg"
-import Trash from "../../assests/imgs/trash-solid.svg"
-
 
 
 import { useState } from "react"
 
-export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User,setImage,image  }) {
+export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User,setImage,image,   }) {
 
     const [tag, setTag] = useState("")
 
