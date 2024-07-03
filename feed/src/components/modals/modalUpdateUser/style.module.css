@@ -1,0 +1,93 @@
+.blur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.664);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    border-radius: 20px;
+}
+.ConatinerImage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+.UserPhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+.ImgeUser{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.ConatinerInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+.InputConatiner{
+    width: 90%;
+    height: 40px ;
+}
+.Title{
+    font-size: 15px;
+}
+.inputLogin{
+    width: 95%;
+    padding-top: 10px;
+    height: 20px;
+    border-bottom: 0.5px solid #acabab;
+    outline:none;
+    color: black;
+}
+
+.error{
+    font-size: 12px;
+    color: red;
+}
+.ConatinerButton {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 80%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.ConatinerButton button {
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: semiBold;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    outline: none;
+}
