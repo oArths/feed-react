@@ -9,8 +9,8 @@ export default function Login() {
     const [error, setError] = useState({})
     const [ token , setToken] = useToken()
     const [values, setValues] = useState({
-        email: "teste@gmail2.com",
-        password: "aaaaaaaa2",
+        email: "teste@gmail3.com",
+        password: "aaaaaaaa3",
     })
 
 
