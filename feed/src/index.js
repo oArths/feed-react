@@ -5,6 +5,7 @@ import Cadastro from './pages/cadastro';
 import Login from './pages/login';
 import Home from './pages/home';
 import ArticleComments from './pages/articlePage';
+import Profile from './pages/profile';
 import './index.css';
 import { TokenProvider } from './context/TokenContext';
 
@@ -22,6 +23,8 @@ function renderPage (){
       return <Home/>
     case '/home/article':
       return <ArticleComments/>
+    case '/profile':
+      return <Profile/>
     default:
       return <Login/>
   }
