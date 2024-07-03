@@ -1,10 +1,14 @@
 import "./style.css"
+import { useState } from "react"
 import More from "../../../assests/imgs/more-vert.svg"
 import Comments from "../../../assests/imgs/comments.svg"
 import Heart from "../../../assests/imgs/heart.svg"
+import HeartSolid from "../../../assests/imgs/heart-solid.svg"
 
 
-export default function CardAricle({ Title, User, UserImage, IsUser, onclickOptins, onclickHeart, onclickComments }) {
+export default function CardAricle({ Title, User, UserImage, IsUser, onclickOptins, onclickComments ,HeartCount, CommentsCount }) {
+
+    const [like, setLike] = useState(false)
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -13,6 +17,9 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
         }
         return text;
     };
+    const onclickHeart = () => {
+        setLike(!like)
+    }
 
     return (
         <div className="card">
@@ -39,14 +46,17 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
             <div className="comentarios">
                 <div className="commetsContainer">
                     <div className="Houver" onClick={onclickHeart}>
-                        <img className="icon" src={Heart}  />
-                        <div className="info">12</div>
+                        {like ? 
+                        (<img className="icon" src={HeartSolid}/>)
+                    :
+                    (<img className="icon" src={Heart}/>) }
+                        <div className="info">{HeartCount}</div>
                     </div>
                 </div>
                 <div className="commetsContainer">
                     <div className="Houver" onClick={onclickComments}>
                         <img className="icon" src={Comments}  />
-                    <div className="info">79</div>
+                    <div className="info">{CommentsCount}</div>
                     </div>
                 </div>
 
