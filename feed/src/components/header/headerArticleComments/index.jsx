@@ -2,7 +2,7 @@ import styles from "./style.module.css"
 import arrow from "../../../assests/imgs/arrow-left.svg"
 
 
-export default function HeaderArticleComments({ onclickBack }) {
+export default function HeaderArticleComments({ onclickBack, Title }) {
 
     return (
         <div className={styles.Conatiner}>
@@ -11,7 +11,7 @@ export default function HeaderArticleComments({ onclickBack }) {
                 <img className={styles.img} src={arrow} />
             </div>
             <div className={styles.Title} >
-                Cometarios
+                {Title}
             </div>
             </div>
         </div>
