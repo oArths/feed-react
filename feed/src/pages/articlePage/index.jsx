@@ -23,7 +23,7 @@ export default function ArticleComments() {
     } 
     return (
         <div className={styles.body} >
-            <HeaderArticleComments onclickBack={() => (window.location.href = '/home')} />
+            <HeaderArticleComments onclickBack={() => (window.location.href = '/home')} Title="Comentarios" />
             <div className={styles.feed} >
                 <CardAricle
                 onclickComments={() => NewReply({
