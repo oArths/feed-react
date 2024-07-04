@@ -4,7 +4,8 @@ import UserProfile from "../../components/userProfile"
 import ModalUpdateuser from "../../components/modals/modalUpdateUser"
 import CardAricle from "../../components/card/cardArticle"
 import DropDownOptions from "../../components/dropdown/dropDownOption"
-import ModalPost from "../../components/modalPost"
+import ModalPostEdit from "../../components/modalPostEdit/index"
+import Heart from "../../assests/imgs/heart-solid.svg"
 import { useState } from "react"
 
 export default function Profile() {
@@ -12,7 +13,7 @@ export default function Profile() {
     const [ModalEdit, setModalEdit] = useState(false)
     const [ModalEditPost, setModalEditPost] = useState(false)
     const [image, setImage] = useState(null)
-    const [imageEdit, setImageEdit] = useState("")
+    const [imageEdit, setImageEdit] = useState(Heart)
 
     const UpdateUser = () => {
         setModalUpdateOpen(false)
@@ -30,6 +31,7 @@ export default function Profile() {
                     User="asssssssd"
                     UserBio="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaa"
                     onClickEditProfile={() => setModalUpdateOpen(!ModalUpdateOpen)}
+                    disabled={ModalEdit}
                 />
      
                 <div className={styles.cardConatiner}>
@@ -45,7 +47,7 @@ export default function Profile() {
             />
                 </div>
             </div>
-            <ModalPost
+            <ModalPostEdit
             Title="Editar publicação"
             // Subbmit={() => setModalEditPost(!ModalEditPost)} 
             CloseModal={() => setModalEditPost(!ModalEditPost)}  

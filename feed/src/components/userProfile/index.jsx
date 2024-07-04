@@ -1,7 +1,7 @@
 import styles from "./style.module.css"
 
 
-export default function UserProfile({ UserImage, User, UserBio,onClickEditProfile }) {
+export default function UserProfile({ UserImage, User, UserBio,onClickEditProfile, disabled }) {
 
     return (
         <div className={styles.card}>
@@ -15,7 +15,7 @@ export default function UserProfile({ UserImage, User, UserBio,onClickEditProfil
                 </div>
             </div>
             <div className={styles.ButtonConatiner}>
-                <button onClick={onClickEditProfile} className={styles.Button}>Editar perfil</button>
+                <button onClick={onClickEditProfile} disabled={disabled} className={styles.Button}>Editar perfil</button>
             </div>
             <div className={styles.Footer}>
                 Publicações
