@@ -1,12 +1,11 @@
 .main{
-      margin-top: 155px; 
+      margin-top: 183px; 
     margin-right: 380px;
     display: flex;
     flex-direction: row;
     width: 75px;
     height: 100px;    
     position: fixed;
-    background-color: white;
 
 }
 

@@ -1,10 +1,7 @@
 import styles from "./style.module.css"
-import { useToken } from "../../../context/UseToken"
 import close from "../../../assests/imgs/xmark.svg"
 
-export default function DropDownTags({ IsOpen, UserEdit, CloseOption }) {
-    const [token, setToken] = useToken()
-    const data = ['Arroz', 'Farrofa', 'Comida', 'Comida', 'Comida', 'Comida']
+export default function DropDownTags({ IsOpen ,setOptionSelect, CloseOption, option }) {
 
     if (IsOpen) {
         return (
@@ -13,9 +10,9 @@ export default function DropDownTags({ IsOpen, UserEdit, CloseOption }) {
                 <img className={styles.Button} src={close} />
             </div>
             <div className={styles.Container} >
-                {data.map((data, index) => (
-                    <div key={index} className={styles.ConatinerUser} onClick={UserEdit}>
-                        <div className={styles.verPerfil}>{data}</div>
+                {option.map((option, index) => (
+                    <div key={index} className={styles.ConatinerUser} onClick={()=>(setOptionSelect(option))}>
+                        <div className={styles.verPerfil}>{option}</div>
                     </div>
                 ))}
             </div>
