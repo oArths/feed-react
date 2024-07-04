@@ -1,7 +1,7 @@
 .body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     width: 100%;
     min-height: 100vh;
@@ -15,4 +15,5 @@
     margin-top: 50px;
     width: 30vw;
     height: 100%;
+    background-color: aqua;
 }
