@@ -2,14 +2,19 @@ import styles from "./style.module.css"
 import Close from "../../assests/imgs/xmark.svg"
 import Photo from "../../assests/imgs/media-image-list.svg"
 import Hashtag from "../../assests/imgs/hashtag.svg"
+import Trash from "../../assests/imgs/trash-solid.svg"
+import DropDownTags from "../dropdown/dropDownTag"
 
 
 import { useState } from "react"
 
 export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, UserImage, User,setImageEdit,imageEdit,   }) {
 
+    const [modalTag, setmodalTag] = useState(false)
+    const [OptionSelect, setOptionSelect] = useState("");
     const [tag, setTag] = useState("")
     const [text, setText ] =  useState("inicial")
+    const data = ['Arroz', 'Farrofa', 'Comida', 'Comidgffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbba', 'Comida', 'Comida']
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -55,7 +60,17 @@ export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, User
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         maxLength={200} placeholder="O que você esta pensando?" />
+                         <div className={styles.ConatinerTags}>
+                        <div className={styles.Tag} >{OptionSelect}</div>
+                       {OptionSelect &&  <img className={styles.Delete} src={Trash} onClick={() => setOptionSelect("")}/>}
                     </div>
+                    </div>
+                    <DropDownTags
+                    setOptionSelect={setOptionSelect}
+                    option={data}
+                    CloseOption={() => setmodalTag(!modalTag)}
+                    IsOpen={modalTag}
+                />
                     {!imageEdit ? 
                     (<>
                         <input type="file"
@@ -81,7 +96,7 @@ export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, User
                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
                             <img className={styles.FolderIcon} src={Photo} />
                         </div>}
-                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
+                        <div className={styles.ConatinerImage} onClick={() => setmodalTag(!modalTag)}>
                             <img className={styles.FolderIcon} src={Hashtag} />
                         </div>
                        </div>

@@ -87,6 +87,7 @@
 
 .title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -102,7 +103,30 @@
     outline: none;
     resize: none;
 }
-
+.ConatinerTags{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    padding-bottom: 10px;
+    gap: 10px;
+}
+.Tag{
+    border: none;
+    outline: none;
+    width: auto;
+    max-width: 350px;
+    padding-left: 25PX;
+    font-size: 13PX;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    color: rgb(0, 89, 255);
+    background-color: white;
+}
+.Delete{
+    width: 15px;
+    height: 15px;
+}
 .Option {
     display: flex;
     flex-direction: row;
@@ -162,7 +186,6 @@
 }
 
 .FolderIcon {
-    opacity: 50%;
     width: 25px;
     height: 25px;
 }
