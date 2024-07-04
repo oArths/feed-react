@@ -6,9 +6,10 @@ import Hashtag from "../../assests/imgs/hashtag.svg"
 
 import { useState } from "react"
 
-export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User,setImage,image,   }) {
+export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImage, User,setImageEdit,imageEdit,   }) {
 
     const [tag, setTag] = useState("")
+    const [text, setText ] =  useState("inicial")
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -27,7 +28,7 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
 
 
     const closeImage = () => {
-        setImage(null);
+        setImageEdit(null);
     };
 
 
@@ -36,7 +37,7 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
             <div className={styles.blur} onClick={CloseModal}>
                     <div className={styles.Conatiner} onClick={(e) => { e.stopPropagation();}}>
                     <div className={styles.header}>
-                        <div>Criar Publicação</div>
+                        <div>{Title}</div>
                     </div>
                     <div className={styles.userConatiner}>
                         <div className={styles.UserPhoto}>
@@ -45,9 +46,14 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
                         <div className="UserName">{truncateText(User, 20)}</div>
                     </div>
                     <div className={styles.title}>
-                        <textarea className={styles.input} type="text" maxLength={200} placeholder="O que você esta pensando?" />
+                        <textarea 
+                        className={styles.input} 
+                        type="text" 
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        maxLength={200} placeholder="O que você esta pensando?" />
                     </div>
-                    {!image ? 
+                    {!imageEdit ? 
                     (<>
                         <input type="file"
                             accept="image/*"
@@ -56,19 +62,19 @@ export default function ModalPost({ IsOpen, CloseModal, Subbmit, UserImage, User
                             onChange={({ target: { files } }) => {
 
                                 if (files) {
-                                    setImage(URL.createObjectURL(files[0]))
+                                    setImageEdit(URL.createObjectURL(files[0]))
                                 } else {
-                                    setImage(null)
+                                    setImageEdit(null)
                                 }
                             }}
                         />
                     </>
                     ) : (<div className={styles.ImageRender}>
                                 <img className={styles.Close} src={Close} onClick={closeImage} />
-                                <img src={image} className={styles.imageFull} />
+                                <img src={imageEdit} className={styles.imageFull} />
                     </div>)}
                     <div className={styles.Option}>
-                       {!image && 
+                       {!imageEdit && 
                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
                             <img className={styles.FolderIcon} src={Photo} />
                         </div>}

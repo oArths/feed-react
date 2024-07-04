@@ -1,12 +1,13 @@
 import styles from "./style.module.css"
 import { useState } from "react";
-export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image }) {
+export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, onClickUpdateUser }) {
 
     const [error, setError] = useState({})
     const [values, setValues] = useState({
         email: "teste@gmail3.com",
         password: "aaaaaaaa3",
     })
+    
 
 
     const openFileSelector = () => {
@@ -50,10 +51,8 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image }
                             <div className={styles.error}>{error && <div>{error.email}</div>}</div>
                         </div>
 
-                    
-
                         <div className={styles.ConatinerButton}>
-                            <button onClick={""}>Salvar</button>
+                            <button onClick={onClickUpdateUser}>Salvar</button>
                         </div>
                     </div>
                 </div>
