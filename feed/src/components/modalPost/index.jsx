@@ -6,10 +6,10 @@ import Hashtag from "../../assests/imgs/hashtag.svg"
 
 import { useState } from "react"
 
-export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImage, User,setImageEdit,imageEdit,   }) {
+export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImage, User,setImage,image,   }) {
 
     const [tag, setTag] = useState("")
-    const [text, setText ] =  useState("inicial")
+    const [text, setText ] =  useState("")
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -28,7 +28,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
 
 
     const closeImage = () => {
-        setImageEdit(null);
+        setImage(null);
     };
 
 
@@ -49,11 +49,10 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
                         <textarea 
                         className={styles.input} 
                         type="text" 
-                        value={text}
                         onChange={(e) => setText(e.target.value)}
                         maxLength={200} placeholder="O que você esta pensando?" />
                     </div>
-                    {!imageEdit ? 
+                    {!image? 
                     (<>
                         <input type="file"
                             accept="image/*"
@@ -62,19 +61,19 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
                             onChange={({ target: { files } }) => {
 
                                 if (files) {
-                                    setImageEdit(URL.createObjectURL(files[0]))
+                                    setImage(URL.createObjectURL(files[0]))
                                 } else {
-                                    setImageEdit(null)
+                                    setImage(null)
                                 }
                             }}
                         />
                     </>
                     ) : (<div className={styles.ImageRender}>
                                 <img className={styles.Close} src={Close} onClick={closeImage} />
-                                <img src={imageEdit} className={styles.imageFull} />
+                                <img src={image} className={styles.imageFull} />
                     </div>)}
                     <div className={styles.Option}>
-                       {!imageEdit && 
+                       {!image && 
                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
                             <img className={styles.FolderIcon} src={Photo} />
                         </div>}
