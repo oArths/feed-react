@@ -49,7 +49,7 @@ export default function Home (){
 "/>          
             </div>
             <DropDownHeader IsOpen={DropDownOpen} Blur={() => setDropDownOpen(!DropDownOpen)} Userperfil={() => (window.location.href = "/profile")} />
-                <ModalPost IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setOpenModal(true)}  setImage={setImage} image={image}/>
+                <ModalPost Title="Criar publicação" IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setOpenModal(true)}  setImage={setImage} image={image}/>
                 <ModalDeltePost 
             title="Descartar Publicação?" 
             Confirm="Não"

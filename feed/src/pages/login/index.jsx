@@ -33,9 +33,8 @@ export default function Login() {
             return response.json();
         })
         .then(data => {
-            const newtoken =  data.token
-            setToken(newtoken)
-            // console.log( 'ds', newtoken)
+            const newtoken =  data.token.split(" ")
+            setToken(newtoken[1])
             // console.log(token)
             window.location.href = '/home'
             setError({});  
