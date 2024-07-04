@@ -4,7 +4,7 @@
     justify-content: center; */
     width: 100vw;
     height: 1000vh;
-    z-index: 12000px;
+    z-index: 12px;
     /* top: 0;
     left: 0; */
     position: absolute;
@@ -17,12 +17,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 60px;
-    margin-left: 470px;
+    margin-top: 70px;
+    margin-left: 500px;
     z-index: 1000;
     gap: 2px;
-    width: 100px;
-    height: 80px;
+    width: 75px;
+    height: auto;
     position: absolute;
     background-color: white;
     border-radius: 10px;
@@ -36,11 +36,13 @@
     justify-content: left;
     width: 80%;
     height: 25px;
-    padding: 5px;
+    padding:  5px;
+    padding-left: 10px;
     cursor: pointer;
     gap: 5px;
     transition: all 0.3s ease;
     border-radius: 10%;
+    /* text-align: center; */
 
     &:hover {
         background-color: #e0e0e0;
@@ -59,6 +61,7 @@
     width: 80%;
     height: 25px;
     padding: 5px;
+    padding-left: 10px;
     cursor: pointer;
     gap: 5px;
     transition: all 0.3s ease;
@@ -75,8 +78,8 @@
 }
 
 .imgicon {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
 }
 
 .imgiconLogOut {
