@@ -64,7 +64,9 @@ export default function Login() {
                     <div className="error">{error && <div>{error.password}</div>}</div>
                     </div>
 
-                    <button className='buttonlogin' onClick={Subbimt}>Entrar</button>
+                    <div className="conteinerButton">
+                        <button className='buttonlogin' onClick={Subbimt}>Entrar</button>
+                    </div>
                     <div className="forgot">Não é membro? <a href="/cadastro" className="sing">Cadastre-se </a></div>
                 </div>
             </div>

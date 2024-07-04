@@ -60,6 +60,12 @@
 .title{
     font-weight: normal;
 }
+.conteinerButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
 .buttonlogin{
     padding: 10px;

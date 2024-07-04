@@ -70,8 +70,10 @@ export default function Cadastro() {
                     <input type='password' onChange={(e) => setValues({ ...values, password: e.target.value })} placeholder='Senha' className='inputLogin' />
                     <div className="error">{error && <div>{error.password}</div>}</div>
                     </div>
+                    <div className="conteinerButton">
 
                     <button className='buttonlogin' onClick={Subbimt}>Criar</button>
+                    </div>
                     <div className="forgotCadastro">Já é membro? <a href="/" className="sing">Entre já</a></div>
                 </div>
             </div>
