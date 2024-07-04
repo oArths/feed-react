@@ -1,0 +1,197 @@
+.blur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100px;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.418);
+}
+
+.Conatiner {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    gap: 2px;
+    width: 500px;
+    height: auto;
+    position: relative;
+    z-index: 11px;
+    background-color: white;
+    border-radius: 10px;
+
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 60px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+
+}
+
+.userConatiner {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 10px;
+}
+
+
+.UserPhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5px solid #ccc;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.ImgeUser{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.header div {
+    font-size: 20px;
+    font-weight: bold;
+
+}
+
+.imageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    margin-right: 20px;
+}
+
+.img {
+    color: red;
+    width: 30px;
+    height: 30px;
+
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+}
+
+.input {
+    min-width: 90%;
+    max-width: 350px;
+    max-height: 70px;
+    min-height: 70px;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.Option {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding-top: 20px;
+    gap: 25px;
+    width: 90%;
+    align-items: center;
+}
+
+.ConatinerImage {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ConatinerImage div {
+    font-size: 12px;
+}
+
+.ImageRender {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(165, 165, 165, 0.452);
+    width: 90%;
+    height: 300px;
+    padding: 5px;
+    border-radius: 10px;
+
+    &:first-child {
+        margin-right: 300px;
+    }
+}
+
+.imageFull {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ConatinerImage img {
+    border-radius: 20px;
+}
+
+.Close {
+    position: absolute;
+    top: 165px;
+    right: 30px;
+    width: 25px;
+    height: 25px;
+    background-color: #ccccccc4;
+    border: 0.5px solid rgba(139, 137, 137, 0.486);
+    border-radius: 10px;
+}
+
+.FolderIcon {
+    opacity: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.ConatinerButton {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width: 80%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.ConatinerButton button {
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: semiBold;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    outline: none;
+}
+
+.Description {
+    margin-top: 30px;
+    height: 200px;
+    width: 100%;
+    background-color: blue;
+
+}
