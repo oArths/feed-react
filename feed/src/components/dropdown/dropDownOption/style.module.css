@@ -1,0 +1,85 @@
+.blur {
+    /* display: flex;
+    align-items: start;
+    justify-content: center; */
+    width: 100vw;
+    height: 1000vh;
+    z-index: 12000px;
+    /* top: 0;
+    left: 0; */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.247);
+
+}
+
+.Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 60px;
+    margin-left: 470px;
+    z-index: 1000;
+    gap: 2px;
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    border: 0.5px solid #ccc;
+
+}
+
+.ConatinerUser {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 80%;
+    height: 25px;
+    padding: 5px;
+    cursor: pointer;
+    gap: 5px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+
+    &:hover {
+        background-color: #e0e0e0;
+
+    }
+}
+
+.verPerfil {
+    font-size: 12px;
+}
+
+.ConatinerLogOut {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 80%;
+    height: 25px;
+    padding: 5px;
+    cursor: pointer;
+    gap: 5px;
+    transition: all 0.3s ease;
+    border-radius: 10%;
+
+    &:hover {
+        background-color: #e0e0e0;
+    }
+}
+
+.LogOut {
+    font-size: 12px;
+    color: red;
+}
+
+.imgicon {
+    width: 20px;
+    height: 20px;
+}
+
+.imgiconLogOut {
+    width: 20px;
+    height: 20px;
+}
