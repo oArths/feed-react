@@ -7,10 +7,10 @@ import './style.css';
 export default function Login() {
 
     const [error, setError] = useState({})
-    const [ token , setToken] = useToken()
+    const [ token , setToken,  userId, setUserId] = useToken()
     const [values, setValues] = useState({
-        email: "teste@gmail3.com",
-        password: "aaaaaaaa3",
+        email: "ismael87188@mydomain.com",
+        password: "emonahan",
     })
 
 
@@ -34,14 +34,16 @@ export default function Login() {
         })
         .then(data => {
             const newtoken =  data.token.split(" ")
+            const IdUser = data.UserId
             setToken(newtoken[1])
+            setUserId(IdUser)
             // console.log(token)
             window.location.href = '/home'
             setError({});  
         })
         .catch(error => {
             setError(error.error || {});
-            console.error('Error:', error.error);
+            console.error('Error:', error);
         });
     }
 
