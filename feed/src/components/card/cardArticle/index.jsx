@@ -6,9 +6,9 @@ import Heart from "../../../assests/imgs/heart.svg"
 import HeartSolid from "../../../assests/imgs/heart-solid.svg"
 
 
-export default function CardAricle({ Title, User, UserImage, IsUser, onclickOptins, onclickComments ,HeartCount, CommentsCount }) {
-
-    const [like, setLike] = useState(false)
+export default function CardAricle({ Title, 
+    User, UserImage, IsUser, onclickOptins, 
+    onclickComments ,HeartCount, CommentsCount, like, onclickHeart, image }) {
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -17,9 +17,6 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
         }
         return text;
     };
-    const onclickHeart = () => {
-        setLike(!like)
-    }
 
     return (
         <div className="card">
@@ -40,9 +37,12 @@ export default function CardAricle({ Title, User, UserImage, IsUser, onclickOpti
                     {truncateText(Title, 120)}
                 </div>
             </div>
+            {null !== (image) && (
+
             <div className="image">
-                <img className="ImgTag" src="https://www.macetesdemae.com/wp-content/uploads/2014/01/Auau.jpg" />
+                <img className="ImgTag" src={image} />
             </div>
+            )}
             <div className="comentarios">
                 <div className="commetsContainer">
                     <div className="Houver" onClick={onclickHeart}>
