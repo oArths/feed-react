@@ -37,7 +37,6 @@ export default function Login() {
             const IdUser = data.UserId
             setToken(newtoken[1])
             setUserId(IdUser)
-            // console.log(token)
             window.location.href = '/home'
             setError({});  
         })

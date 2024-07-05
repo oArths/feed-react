@@ -14,14 +14,37 @@ export default function Home() {
     const [ModalOpen, setOpenModal] = useState(false);
     const [image, setImage] = useState(null)
     const [token, setToken, UserId] = useToken()
-    const [error, setError] = useState({})
     const [Article, setArticle] = useState([])
-
+    const [like, setLike] = useState(false)
+    
+    const LikePost = (articleId, Liked) => {
+        const method = Liked ? 'DELETE' : 'POST';
+            fetch(`http://127.0.0.1:8000/api/auth/like/article`, {
+                method : method,
+                headers: {
+                    'Content-Type' : 'application/json',
+                    'Authorization' : `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    'article_id': articleId,
+                    'user_id': UserId
+                })
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                console.log(method === 'POST' ? "curtiu" : "descurtiu", data);
+                setLike(!like)
+            })
+            .catch(error => {
+                console.log("erro",error.error)
+            })
+        
+    }
 
 
     useEffect(() => {
-        // console.log("token",token)
-        // console.log("articleaaaaaaa", Article)
         fetch(`http://127.0.0.1:8000/api/auth/articles/recently/user/${UserId}`,{
             method  : 'GET',
             headers : {
@@ -39,13 +62,14 @@ export default function Home() {
         })
         .then(data =>{
             setArticle(data.data)
-            console.log("certo",data.data)
+            console.log(data);
+            
         })
         .catch(error =>{
-            // console.log("error", error)
-            // window.location.href = '/'
+            console.log("error", error)
+            window.location.href = '/'
         })
-    }, [])
+    }, [like])
 
     return (
         <div className={styles.body}>
@@ -60,10 +84,13 @@ export default function Home() {
                 <div key={index} >
                 <CardAricle
                     UserImage={Heart}
-                    CommentsCount={Article.likes_count}
+                    CommentsCount={Article.comments_count}
                     HeartCount={Article.likes_count}
+                    like={Article.liked_by_user}
+                    image={Article.image}
+                    onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
                     onclickComments={() => (window.location.href = '/home/article')}
-                    User={Article.id}
+                    User={Article.user.username}
                     Title={Article.title}/>
                 </div>
             ))}
