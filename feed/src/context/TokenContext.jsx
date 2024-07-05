@@ -6,6 +6,7 @@ export const TokenContext = createContext();
 
 export const TokenProvider = ({children}) => {
     const [token, setToken ] = useState(localStorage.getItem('token'));
+    const [UserId, setUserId ] = useState(localStorage.getItem('UserId'));
 
     useEffect(() => {
         if(token){
@@ -14,8 +15,16 @@ export const TokenProvider = ({children}) => {
             localStorage.removeItem('token')
         }
     }, [token])
+
+    useEffect(() => {
+        if(UserId){
+            localStorage.setItem('UserId', UserId)
+        }else{
+            localStorage.removeItem('UserId')
+        }
+    }, [UserId])
     return (
-        <TokenContext.Provider value={{token, setToken}}>
+        <TokenContext.Provider value={{token, setToken, UserId, setUserId}}>
             {children}
         </TokenContext.Provider>
     )
