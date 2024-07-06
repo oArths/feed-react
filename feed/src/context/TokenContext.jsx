@@ -5,8 +5,10 @@ export const TokenContext = createContext();
 
 
 export const TokenProvider = ({children}) => {
-    const [token, setToken ] = useState(localStorage.getItem('token'));
-    const [UserId, setUserId ] = useState(localStorage.getItem('UserId'));
+    const [token, setToken ] = useState(localStorage.getItem('token') || null);
+    const [UserId, setUserId ] = useState(localStorage.getItem('UserId')|| null);
+    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')))
+
 
     useEffect(() => {
         if(token){
@@ -23,8 +25,16 @@ export const TokenProvider = ({children}) => {
             localStorage.removeItem('UserId')
         }
     }, [UserId])
+    
+    useEffect(()=>{
+        if(userData){
+            localStorage.setItem('userData', JSON.stringify(userData))
+        }else{
+            localStorage.removeItem('userData')
+        }
+    },[userData])
     return (
-        <TokenContext.Provider value={{token, setToken, UserId, setUserId}}>
+        <TokenContext.Provider value={{token, setToken, UserId, setUserId, userData, setUserData}}>
             {children}
         </TokenContext.Provider>
     )
