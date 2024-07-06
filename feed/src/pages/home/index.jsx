@@ -12,9 +12,9 @@ export default function Home() {
     const [DropDownOpen, setDropDownOpen] = useState(false)
     const [CreateOpen, setCreateOpen] = useState(false)
     const [ModalOpen, setOpenModal] = useState(false);
-    const [image, setImage] = useState(null)
+   const [ImageNull, setImageNull] = useState(false)
     const [token, setToken, UserId] = useToken()
-    const [Article, setArticle] = useState([])
+     const [Article, setArticle] = useState([])
     const [like, setLike] = useState(false)
     
     const LikePost = (articleId, Liked) => {
@@ -70,7 +70,7 @@ export default function Home() {
             window.location.href = '/'
         })
     }, [like])
-
+    
     return (
         <div className={styles.body}>
             <HeaderHome
@@ -79,6 +79,7 @@ export default function Home() {
                 onclickPlus={() => setCreateOpen(!CreateOpen)}
             />
             <div className={styles.feed}>
+                
             {Article.map((Article, index ) => (
 
                 <div key={index} >
@@ -98,13 +99,22 @@ export default function Home() {
 
             </div>
             <DropDownHeader IsOpen={DropDownOpen} Blur={() => setDropDownOpen(!DropDownOpen)} Userperfil={() => (window.location.href = "/profile")} />
-            <ModalPost Title="Criar publicação" IsOpen={CreateOpen} Subbmit={() => setCreateOpen(!CreateOpen)} CloseModal={() => setOpenModal(true)} setImage={setImage} image={image} />
+            <ModalPost 
+            Title="Criar publicação" 
+            IsOpen={CreateOpen} 
+            User={""}
+            Subbmit={() => setCreateOpen(!CreateOpen)} 
+            CloseModal={() => setOpenModal(true)} 
+            ClearImage={ImageNull}
+
+            />
+        
             <ModalDeltePost
                 title="Descartar Publicação?"
                 Confirm="Não"
                 onClickConfirm={() => setOpenModal(!ModalOpen)}
                 Delete="Descartar"
-                onClickDelete={() => (setCreateOpen(!CreateOpen), setOpenModal(!ModalOpen), setImage(null))}
+                onClickDelete={() => (setCreateOpen(!CreateOpen), setOpenModal(!ModalOpen), setImageNull(!ImageNull))}
                 isOpen={ModalOpen}
             />
         </div>
