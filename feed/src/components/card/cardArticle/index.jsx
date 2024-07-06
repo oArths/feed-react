@@ -17,7 +17,7 @@ export default function CardAricle({ Title,
         }
         return text;
     };
-
+    const baseURL = "http://127.0.0.1:8000/img/user/";
     return (
         <div className="card">
             <div className="header">
@@ -38,9 +38,9 @@ export default function CardAricle({ Title,
                 </div>
             </div>
             {null !== (image) && (
-
+                
             <div className="image">
-                <img className="ImgTag" src={image} />
+                <img className="ImgTag" src={baseURL + image}  />
             </div>
             )}
             <div className="comentarios">
