@@ -4,16 +4,61 @@ import Close from "../../assests/imgs/xmark.svg"
 import Photo from "../../assests/imgs/media-image-list.svg"
 import Trash from "../../assests/imgs/trash-solid.svg"
 import Hashtag from "../../assests/imgs/hashtag.svg"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useToken } from "../../context/UseToken"
 
-export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImage, User, setImage, image, }) {
+export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImage, User, ClearImage}) {
 
     const [modalTag, setmodalTag] = useState(false)
+    const [ token, setToken, UserId, setUserId,userData, setUserData] = useToken()
+    // const userDataArray = Object.values(userData)
+ 
+ 
     const [OptionSelect, setOptionSelect] = useState("");
     const [tag, setTag] = useState("")
     const [text, setText] = useState("")
-        const data = ['Arroz', 'Farrofa', 'Comida', 'Comidgffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbba', 'Comida', 'Comida']
+    const [image, setImage] = useState(null)
+    const [imageFile, setImageFile] = useState(null); 
+    const data = ['Arroz', 'Farrofa', 'Comida', 'Comida', 'Comida', 'Comida']
+    const [error, setError] = useState({})
 
+
+    const SubmitInfo = () => {
+        // console.log("aoba",userData)
+         const fromData = new FormData
+
+         fromData.append('title', text)
+         fromData.append('image', imageFile)
+         fromData.append('description', "ds")
+         fromData.append('title', text)
+        fetch('http://127.0.0.1:8000/api/auth/articles', {
+            method : 'POST',
+            headers : {
+                'Contente-Type' : 'application/json',
+                'Authorization' : `Bearer ${token}`
+
+            },
+            body : fromData
+        })
+        .then(response =>{
+            if(!response.ok){
+                return response.json().then(errorData => {
+                    throw errorData;
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            Subbmit()
+            setError({})
+        })
+        .catch(error => {
+            setError(error.erro || {});
+            console.log('Error:', error.erro);
+        })
+
+    }
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -30,12 +75,19 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
         document.querySelector(".input-files").click();
     };
 
+    useEffect(() => {
+        if (ClearImage) {
+            setImage(null);
+            setImageFile(null);
+        }
+    }, [ClearImage]);
 
     const closeImage = () => {
         setImage(null);
+        setImageFile(null);
     };
 
-
+    const baseURL = "http://127.0.0.1:8000/img/user/";
     if (IsOpen) {
         return (
             <div className={styles.blur} onClick={CloseModal}>
@@ -45,9 +97,9 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
                     </div>
                     <div className={styles.userConatiner}>
                         <div className={styles.UserPhoto}>
-                            <img className={styles.ImgeUser} src={UserImage} />
+                            <img className={styles.ImgeUser} src={baseURL + userData[7]} />
                         </div>
-                        <div className="UserName">{truncateText(User, 20)}</div>
+                        <div className="UserName">{truncateText(userData[1], 20)}</div>
                     </div>
                     <div className={styles.title}>
                         <textarea
@@ -56,6 +108,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
                             
                             onChange={(e) => setText(e.target.value)}
                             maxLength={198} placeholder="O que você esta pensando?" />
+                            <div className={styles.error}>{error && <div>{error.title}</div>}</div>
                     <div className={styles.ConatinerTags}>
                         <div className={styles.Tag} >{OptionSelect}</div>
                        {OptionSelect &&  <img className={styles.Delete} src={Trash} onClick={() => setOptionSelect("")}/>}
@@ -77,8 +130,11 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
 
                                     if (files) {
                                         setImage(URL.createObjectURL(files[0]))
+                                        setImageFile(files[0])
                                     } else {
                                         setImage(null)
+                                        setImageFile(null)
+
                                     }
                                 }}
                             />
@@ -97,7 +153,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImag
                         </div>
                     </div>
                     <div className={styles.ConatinerButton}>
-                        <button onClick={Subbmit}>Publicar</button>
+                        <button onClick={SubmitInfo}>Publicar</button>
                     </div>
                 </div>
 
