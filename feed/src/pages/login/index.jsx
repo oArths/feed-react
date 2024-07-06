@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useToken } from '../../context/UseToken';
 import './style.css';
 
@@ -7,11 +7,12 @@ import './style.css';
 export default function Login() {
 
     const [error, setError] = useState({})
-    const [ token , setToken,  userId, setUserId] = useToken()
+    const [ token , setToken,  userId, setUserId,userData, setUserData ] = useToken()
     const [values, setValues] = useState({
         email: "ismael87188@mydomain.com",
         password: "emonahan",
     })
+
 
 
 
@@ -37,7 +38,6 @@ export default function Login() {
             const IdUser = data.UserId
             setToken(newtoken[1])
             setUserId(IdUser)
-            window.location.href = '/home'
             setError({});  
         })
         .catch(error => {
@@ -45,6 +45,30 @@ export default function Login() {
             console.error('Error:', error);
         });
     }
+    useEffect(()=>{
+       if(userId){
+        fetch('http://127.0.0.1:8000/api/auth/user', {
+            method: 'GET',
+            headers:{
+                'Content-Type' : 'application/json',
+                'Authorization' : `Bearer ${token}`,
+            }
+        })
+        .then(response =>{
+            return response.json();
+        })
+        .then(data => {
+            setUserData(Object.values(data.data))
+            console.log("sssss",userData);
+            window.location.href = '/home'
+        })
+        .catch(error => {
+            console.error('Error userdata:', error.error);
+        });
+
+       }
+
+    },[userId])
 
     return (
         <div className="Body">
