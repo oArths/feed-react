@@ -7,7 +7,7 @@ import Hashtag from "../../assests/imgs/hashtag.svg"
 import { useState, useEffect } from "react"
 import { useToken } from "../../context/UseToken"
 
-export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, UserImage, User, ClearImage}) {
+export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearImage}) {
 
     const [modalTag, setmodalTag] = useState(false)
     const [ token, setToken, UserId, setUserId,userData, setUserData] = useToken()
