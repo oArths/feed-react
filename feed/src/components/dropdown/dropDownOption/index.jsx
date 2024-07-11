@@ -1,28 +1,27 @@
 import styles from "./style.module.css"
 import { useToken } from "../../../context/UseToken"
 
-export default function DropDownOptions({ IsOpen, Blur, UserEdit }) {
-    const [token, setToken] = useToken()
+export default function DropDownOptions({ IsOpen, UserEdit, id }) {
+    const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
 
 
     const UserDelete = () => {
-        console.log("delete Post", token)
-        // fetch('http://127.0.0.1:8000/api/auth/siguin/delete', {
-        //     method: 'DELETE',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': `Bearer ${token}`
-        //     },
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log('Logout realizado com sucesso:', data);
-        //         setToken(null);
-        //         window.location.href = "/"
-        //     })
-        //     .catch((error) => {
-        //         console.error('Erro ao realizar logout:', error);
-        //     });
+        console.log("delete Post")
+        fetch(`http://127.0.0.1:8000/api/auth/articles/delete/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Post deletardo com sucesso:', data);
+                setModify(!modify)
+            })
+            .catch((error) => {
+                console.error('Erro ao apagar post', error);
+            });
 
 
     }
@@ -30,7 +29,6 @@ export default function DropDownOptions({ IsOpen, Blur, UserEdit }) {
 
     if (IsOpen) {
         return (
-            // <div className={styles.blur} onClick={Blur}>
                 <div className={styles.Container}>
                     <div className={styles.ConatinerUser} onClick={UserEdit}>
                         <div className={styles.verPerfil}>Editar</div>
@@ -39,7 +37,6 @@ export default function DropDownOptions({ IsOpen, Blur, UserEdit }) {
                         <div className={styles.LogOut}>Deletar</div>
                     </div>
                 </div>
-            // </div>
         )
     }
 }

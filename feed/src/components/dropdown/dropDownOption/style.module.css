@@ -1,29 +1,18 @@
-.blur {
-    /* display: flex;
-    align-items: start;
-    justify-content: center; */
-    width: 100vw;
-    height: 1000vh;
-    z-index: 12px;
-    /* top: 0;
-    left: 0; */
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.247);
 
-}
 
 .Container {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 70px;
-    margin-left: 500px;
-    z-index: 1000;
+    margin-top: 90px;
+    margin-left: 455px;
+    z-index: 1;
     gap: 2px;
     width: 75px;
     height: auto;
     position: absolute;
+    /* top: 0; */
     background-color: white;
     border-radius: 10px;
     border: 0.5px solid #ccc;
