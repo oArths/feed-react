@@ -7,6 +7,7 @@ export const TokenContext = createContext();
 export const TokenProvider = ({children}) => {
     const [token, setToken ] = useState(localStorage.getItem('token') || null);
     const [UserId, setUserId ] = useState(localStorage.getItem('UserId')|| null);
+    const [modify, setModify] = useState(localStorage.getItem('Modify') || null)
     const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('userData')))
 
 
@@ -17,6 +18,13 @@ export const TokenProvider = ({children}) => {
             localStorage.removeItem('token')
         }
     }, [token])
+    useEffect(() => {
+        if(modify){
+            localStorage.setItem('Modify', modify)
+        }else{
+            localStorage.removeItem('Modify')
+        }
+    }, [modify])
 
     useEffect(() => {
         if(UserId){
@@ -34,7 +42,7 @@ export const TokenProvider = ({children}) => {
         }
     },[userData])
     return (
-        <TokenContext.Provider value={{token, setToken, UserId, setUserId, userData, setUserData}}>
+        <TokenContext.Provider value={{token, setToken, UserId, setUserId, userData, setUserData , modify, setModify}}>
             {children}
         </TokenContext.Provider>
     )
