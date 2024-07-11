@@ -8,12 +8,12 @@ import DropDownTags from "../dropdown/dropDownTag"
 
 import { useState } from "react"
 
-export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, UserImage, User,setImageEdit,imageEdit,   }) {
+export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal, Subbmit, UserImage, User,setImageEdit,imageEdit,   }) {
 
     const [modalTag, setmodalTag] = useState(false)
     const [OptionSelect, setOptionSelect] = useState("");
     const [tag, setTag] = useState("")
-    const [text, setText ] =  useState("inicial")
+    const [text, setText ] =  useState(Description)
     const data = ['Arroz', 'Farrofa', 'Comida', 'Comidgffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbba', 'Comida', 'Comida']
 
     const truncateText = (text, maxLength,) => {
@@ -36,10 +36,8 @@ export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, User
         setImageEdit(null);
     };
 
-    const basePath = "/assets/imgs/";
-
+    const baseURL = "http://127.0.0.1:8000/img/user/";
     // Concatene o caminho base com o nome do arquivo recebido
-    const dynamicImagePath = `${basePath}${imageEdit}`;
     if (IsOpen) {
         return (
             <div className={styles.blur} onClick={CloseModal}>
@@ -89,7 +87,7 @@ export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, User
                     </>
                     ) : (<div className={styles.ImageRender}>
                                 <img className={styles.Close} src={Close} onClick={closeImage} />
-                                <img src={dynamicImagePath} className={styles.imageFull} />
+                                <img src={imageEdit} className={styles.imageFull} />
                     </div>)}
                     <div className={styles.Option}>
                        {!imageEdit && 
@@ -101,7 +99,7 @@ export default function ModalPostEdit({ Title, IsOpen, CloseModal, Subbmit, User
                         </div>
                        </div>
                     <div className={styles.ConatinerButton}>
-                        <button onClick={Subbmit}>Publicar</button>
+                        <button onClick={Subbmit}>Salvar</button>
                     </div>
                 </div>
             </div>
