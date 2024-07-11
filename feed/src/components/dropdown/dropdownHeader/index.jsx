@@ -4,7 +4,7 @@ import User from "../../../assests/imgs/user.svg"
 import { useToken } from "../../../context/UseToken"
 
 export default function DropDownHeader({ IsOpen, Blur, Userperfil, }) {
-    const [token, setToken] = useToken()
+    const [token , setToken,  userId, setUserId,userData, setUserData ] = useToken()
 
 
     const UserLogout = () => {
@@ -20,6 +20,8 @@ export default function DropDownHeader({ IsOpen, Blur, Userperfil, }) {
             .then(data => {
                 console.log('Logout realizado com sucesso:', data);
                 setToken(null);
+                setUserId(null)
+                setUserData(null)
                 window.location.href = "/"
             })
             .catch((error) => {
