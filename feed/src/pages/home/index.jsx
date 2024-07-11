@@ -43,34 +43,56 @@ export default function Home() {
         
     }
 
-
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/auth/articles/recently/user/${UserId}`,{
-            method  : 'GET',
-            headers : {
-                'Content-Type' : 'appiclation/json',
-                'Authorization' : `Bearer ${token}` 
-            },
-        }) 
-        .then(response => {
-            if(!response.ok){
-                return response.json().then(errorData => {
-                    throw errorData
-                })
+        const fetchUserArticles = async () => {
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/auth/articles/recently/user/${UserId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw errorData;
+                }
+                const userArticles = await response.json();
+                if (userArticles.data.length > 0) {
+                    setArticle(userArticles.data);
+                    console.log("User articles", userArticles);
+                } else {
+                    fetchGeneralArticles();
+                }
+            } catch (error) {
+                console.log("error", error);
             }
-            return response.json()
-        })
-        .then(data =>{
-            setArticle(data.data)
-            console.log(data);
-            
-        })
-        .catch(error =>{
-            console.log("error", error)
-            window.location.href = '/'
-        })
-    }, [like])
-    
+        };
+
+        const fetchGeneralArticles = async () => {
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/api/auth/articles/recently/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                });
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw errorData;
+                }
+                const generalArticles = await response.json();
+                setArticle(generalArticles.data);
+                console.log("General articles", generalArticles);
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchUserArticles();
+    }, [like]);
+
     return (
         <div className={styles.body}>
             <HeaderHome
@@ -102,7 +124,6 @@ export default function Home() {
             <ModalPost 
             Title="Criar publicação" 
             IsOpen={CreateOpen} 
-            User={""}
             Subbmit={() => setCreateOpen(!CreateOpen)} 
             CloseModal={() => setOpenModal(true)} 
             ClearImage={ImageNull}
