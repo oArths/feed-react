@@ -4,17 +4,65 @@ import Photo from "../../assests/imgs/media-image-list.svg"
 import Hashtag from "../../assests/imgs/hashtag.svg"
 import Trash from "../../assests/imgs/trash-solid.svg"
 import DropDownTags from "../dropdown/dropDownTag"
+import { useToken } from "../../context/UseToken"
+import { useState, useEffect } from "react"
 
+export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal,
+     UserImage, User,setImageEdit,imageEdit,idPost, ClearImage,closeImage   }) {
 
-import { useState } from "react"
-
-export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal, Subbmit, UserImage, User,setImageEdit,imageEdit,   }) {
-
+    const [ token, setToken, UserId, setUserId,userData, setUserData] = useToken()
     const [modalTag, setmodalTag] = useState(false)
     const [OptionSelect, setOptionSelect] = useState("");
     const [tag, setTag] = useState("")
     const [text, setText ] =  useState(Description)
+    const [imageFile, setImageFile] = useState(null); 
+
     const data = ['Arroz', 'Farrofa', 'Comida', 'Comidgffffffffffffffffffffffffffffffffffffffffffffbbbbbbbbbbbbbbbbbbbbbbbba', 'Comida', 'Comida']
+
+    const Subbmit = () => {
+        const formData = new FormData
+        formData.append('title', text)
+        formData.append('image', imageFile)
+        formData.append('description', "ds")
+        formData.append('title', text)
+        formData.append('id', idPost)
+       fetch('http://127.0.0.1:8000/api/auth/articles/update/?_method=PUT', {
+           method : 'POST',
+           headers : {
+               'Contente-Type' : 'application/json',
+               'Authorization' : `Bearer ${token}`
+
+           },
+           body : formData
+       })
+       .then(response =>{
+           if(!response.ok){
+               return response.json().then(errorData => {
+                   throw errorData;
+               });
+           }
+           return response.json();
+       })
+       .then(data => {
+           console.log(data)
+           IsOpen(false)
+       })
+       .catch(error => {
+           console.log('Error:', error.erro);
+       })
+
+
+
+    }
+    useEffect(() => {
+        if (ClearImage) {
+            setImageEdit(null);
+            setImageFile(null);
+        }
+    }, [ClearImage]);
+
+
+
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -32,9 +80,10 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal, S
     };
 
 
-    const closeImage = () => {
-        setImageEdit(null);
-    };
+    // const closeImage = () => {
+    //     setImageEdit(null)
+    //     setImageFile(null)    
+    // };
 
     const baseURL = "http://127.0.0.1:8000/img/user/";
     // Concatene o caminho base com o nome do arquivo recebido
@@ -69,7 +118,7 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal, S
                     CloseOption={() => setmodalTag(!modalTag)}
                     IsOpen={modalTag}
                 />
-                    {!imageEdit ? 
+                    {imageEdit && imageFile === null  ? 
                     (<>
                         <input type="file"
                             accept="image/*"
@@ -77,20 +126,24 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal, S
                             hidden
                             onChange={({ target: { files } }) => {
 
-                                if (files) {
+                                if (files && files[0]) {
                                     setImageEdit(URL.createObjectURL(files[0]))
+                                    setImageFile(files[0])
                                 } else {
                                     setImageEdit(null)
+                                    setImageFile(null)
                                 }
                             }}
                         />
                     </>
-                    ) : (<div className={styles.ImageRender}>
+                    ) : (
+                        imageEdit && imageFile !== null && 
+                    <div className={styles.ImageRender}>
                                 <img className={styles.Close} src={Close} onClick={closeImage} />
                                 <img src={imageEdit} className={styles.imageFull} />
                     </div>)}
                     <div className={styles.Option}>
-                       {!imageEdit && 
+                       {imageEdit && imageFile === null && 
                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
                             <img className={styles.FolderIcon} src={Photo} />
                         </div>}

@@ -16,6 +16,12 @@ export default function CardAricle({ Title,
         const [ModalEdit, setModalEdit] = useState(false)
         const [PostEdit, setPostEdit] = useState(PostIndex)
         const [imagePost, setImage] = useState(PostImage)
+        const [ImageNull, setImageNull] = useState(false)
+        
+        const closeImage = () => {
+            setImage(null);
+            setImageNull(true);
+        };
 
         const UpdateUser = (index) => {
             if(PostEdit === index){
@@ -96,6 +102,9 @@ export default function CardAricle({ Title,
                 Description={Title}
                 UserImage={UserImage}
                 User={User}
+            idPost={PostId}
+            ClearImage={ImageNull}
+            closeImage={closeImage}
             />
         </div>
     )
