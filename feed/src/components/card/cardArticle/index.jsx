@@ -4,22 +4,28 @@ import Comments from "../../../assests/imgs/comments.svg"
 import Heart from "../../../assests/imgs/heart.svg"
 import HeartSolid from "../../../assests/imgs/heart-solid.svg"
 import DropDownOptions from "../../dropdown/dropDownOption/index"
+import ModalPostEdit from "../../modalPostEdit/index"
+
 import { useState } from "react"
 
 
 export default function CardAricle({ Title, 
     User, UserImage, IsUser, 
-    onclickComments ,HeartCount, CommentsCount, like, onclickHeart, image,disabled, PostIndex, PostId }) {
-        const [PostEdit, setPostEdit] = useState(null)
+    onclickComments ,HeartCount, CommentsCount, like, onclickHeart, image,disabled, PostIndex, PostId, PostImage }) {
+        const [ModalEditPost, setModalEditPost] = useState(false)
+        const [ModalEdit, setModalEdit] = useState(false)
+        const [PostEdit, setPostEdit] = useState(PostIndex)
+        const [imagePost, setImage] = useState(PostImage)
 
         const UpdateUser = (index) => {
             if(PostEdit === index){
                 setPostEdit(null)
+                setModalEdit(true)
             }else{
                 setPostEdit(index)
+                setModalEdit(false)
             }
-            return console.log(index, PostEdit)
-            
+            // return console.log(index, PostEdit, ModalEdit);            
         }
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -44,9 +50,9 @@ export default function CardAricle({ Title,
                         <img className="more" src={More} />
                     </div>
                      <DropDownOptions
-                     IsOpen={PostEdit === PostIndex}
+                     IsOpen={ModalEdit}
                      id={PostId}
-                     // UserEdit={() => (setModalEditPost(!ModalEditPost), setModalEdit(!ModalEdit))}
+                     UserEdit={() => (setModalEditPost(!ModalEditPost), setModalEdit(!ModalEdit))}
                  />
                     </>
                     }
@@ -80,7 +86,17 @@ export default function CardAricle({ Title,
                 </div>
 
             </div>
-           
+            <ModalPostEdit
+                Title="Editar publicação"
+                // Subbmit={() => setModalEditPost(!ModalEditPost)} 
+                CloseModal={() => setModalEditPost(!ModalEditPost)}
+                setImageEdit={setImage}
+                imageEdit={imagePost}
+                IsOpen={ModalEditPost}
+                Description={Title}
+                UserImage={UserImage}
+                User={User}
+            />
         </div>
     )
 }
