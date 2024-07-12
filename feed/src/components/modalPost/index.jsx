@@ -11,7 +11,6 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
 
     const [modalTag, setmodalTag] = useState(false)
     const [ token, setToken, UserId, setUserId,userData, setUserData] = useToken()
-    // const userDataArray = Object.values(userData)
  
  
     const [OptionSelect, setOptionSelect] = useState("");
@@ -24,7 +23,6 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
 
 
     const SubmitInfo = () => {
-        // console.log("aoba",userData)
          const fromData = new FormData
 
          fromData.append('title', text)

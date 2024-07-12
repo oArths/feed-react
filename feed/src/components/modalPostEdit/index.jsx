@@ -8,9 +8,9 @@ import { useToken } from "../../context/UseToken"
 import { useState, useEffect } from "react"
 
 export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal,
-     UserImage, User,setImageEdit,imageEdit,idPost, ClearImage,closeImage   }) {
+     UserImage, User,setImageEdit,imageEdit,idPost, ClearImage,   }) {
 
-    const [ token, setToken, UserId, setUserId,userData, setUserData] = useToken()
+    const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify ] = useToken()
     const [modalTag, setmodalTag] = useState(false)
     const [OptionSelect, setOptionSelect] = useState("");
     const [tag, setTag] = useState("")
@@ -21,8 +21,11 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal,
 
     const Subbmit = () => {
         const formData = new FormData
+        // return console.log(imageEdit, imageFile);
+        // const ValidImage = imageFile !== null ? imageFile : imageEdit
+        const ValidImage = imageEdit.file ? imageEdit.file : imageEdit.url ;
         formData.append('title', text)
-        formData.append('image', imageFile)
+        formData.append('image', ValidImage)
         formData.append('description', "ds")
         formData.append('title', text)
         formData.append('id', idPost)
@@ -45,7 +48,7 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal,
        })
        .then(data => {
            console.log(data)
-           IsOpen(false)
+           setModify(!modify)
        })
        .catch(error => {
            console.log('Error:', error.erro);
@@ -80,10 +83,10 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal,
     };
 
 
-    // const closeImage = () => {
-    //     setImageEdit(null)
-    //     setImageFile(null)    
-    // };
+    const closeImage = () => {
+        setImageEdit(null)
+        setImageFile(null);
+    };
 
     const baseURL = "http://127.0.0.1:8000/img/user/";
     // Concatene o caminho base com o nome do arquivo recebido
@@ -118,32 +121,31 @@ export default function ModalPostEdit({ Title,Description, IsOpen, CloseModal,
                     CloseOption={() => setmodalTag(!modalTag)}
                     IsOpen={modalTag}
                 />
-                    {imageEdit && imageFile === null  ? 
+                    {imageEdit  === null  ? 
                     (<>
                         <input type="file"
                             accept="image/*"
                             className="input-files"
                             hidden
                             onChange={({ target: { files } }) => {
-
+                                
                                 if (files && files[0]) {
-                                    setImageEdit(URL.createObjectURL(files[0]))
-                                    setImageFile(files[0])
-                                } else {
-                                    setImageEdit(null)
-                                    setImageFile(null)
+                                    // setImageEdit(URL.createObjectURL(files[0]));   
+                                    // setImageFile(files[0]); 
+                                    const imageFile = files[0];
+            const imageUrl = URL.createObjectURL(imageFile);
+            setImageEdit({ file: imageFile, url: imageUrl });
                                 }
                             }}
                         />
                     </>
                     ) : (
-                        imageEdit && imageFile !== null && 
                     <div className={styles.ImageRender}>
                                 <img className={styles.Close} src={Close} onClick={closeImage} />
                                 <img src={imageEdit} className={styles.imageFull} />
                     </div>)}
                     <div className={styles.Option}>
-                       {imageEdit && imageFile === null && 
+                       {imageEdit === null && 
                        <div className={styles.ConatinerImage} onClick={openFileSelector}>
                             <img className={styles.FolderIcon} src={Photo} />
                         </div>}
