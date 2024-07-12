@@ -9,7 +9,6 @@ import { useToken } from "../../context/UseToken"
 export default function Profile() {
     const [ModalUpdateOpen, setModalUpdateOpen] = useState(false)
     const [ModalEdit, setModalEdit] = useState(false)
-    const [imageEdit, setImageEdit] = useState(null)
     const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
     
     const [Article, setArticle] = useState([])
@@ -95,14 +94,14 @@ export default function Profile() {
                     {Article.map((Article, index) => (
                         <div key={index} >
                             <CardAricle
-                                PostImage={baseURL + Article.image}
+                                PostImage={Article.image === null ? null :  baseURL + Article.image}
                                 IsUser={true}
                                 PostIndex={index}
-                                UserImage={baseURL + userData[7]}
+                                UserImage={userData[7]}
                                 CommentsCount={Article.comments_count}
                                 HeartCount={Article.likes_count}
                                 like={Article.liked_by_user}
-                                image={baseURL + Article.image}
+                                image={Article.image}
                                 onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
                                 onclickComments={() => (window.location.href = '/home/article')}
                                 User={userData[1]}
@@ -120,7 +119,6 @@ export default function Profile() {
             <ModalUpdateuser
                 UserValueName={userData[1]}
                 UserValueDescription={userData[1]}
-                // onClickUpdateUser={() => UpdateUser()}
                 setImage={setImage}
                 image={image}
                 isOpen={ModalUpdateOpen}
