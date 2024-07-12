@@ -92,6 +92,7 @@ export default function Home() {
 
         fetchUserArticles();
     }, [like]);
+    const baseURL = "http://127.0.0.1:8000/img/user/";
 
     return (
         <div className={styles.body}>
@@ -110,7 +111,7 @@ export default function Home() {
                     CommentsCount={Article.comments_count}
                     HeartCount={Article.likes_count}
                     like={Article.liked_by_user}
-                    image={Article.image}
+                    image={baseURL + Article.image}
                     onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
                     onclickComments={() => (window.location.href = '/home/article')}
                     User={Article.user.username}
