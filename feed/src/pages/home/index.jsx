@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import CardAricle from "../../components/card/cardArticle"
-import Heart from "../../assests/imgs/heart.svg"
 import HeaderHome from "../../components/header/headerHome"
 import DropDownHeader from "../../components/dropdown/dropdownHeader/index.jsx"
 import ModalPost from "../../components/modalPost/index.jsx"
@@ -13,8 +12,8 @@ export default function Home() {
     const [CreateOpen, setCreateOpen] = useState(false)
     const [ModalOpen, setOpenModal] = useState(false);
    const [ImageNull, setImageNull] = useState(false)
-    const [token, setToken, UserId] = useToken()
-     const [Article, setArticle] = useState([])
+   const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
+   const [Article, setArticle] = useState([])
     const [like, setLike] = useState(false)
     
     const LikePost = (articleId, Liked) => {
@@ -107,11 +106,11 @@ export default function Home() {
 
                 <div key={index} >
                 <CardAricle
-                    UserImage={Heart}
+                    UserImage={userData[7]}
                     CommentsCount={Article.comments_count}
                     HeartCount={Article.likes_count}
                     like={Article.liked_by_user}
-                    image={baseURL + Article.image}
+                    image={Article.image}
                     onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
                     onclickComments={() => (window.location.href = '/home/article')}
                     User={Article.user.username}

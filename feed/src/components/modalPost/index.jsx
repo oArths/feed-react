@@ -65,9 +65,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
         }
         return text;
     };
-    const CreateTag = () => {
-        console.log(tag)
-    }
+
 
     const openFileSelector = () => {
         document.querySelector(".input-files").click();
