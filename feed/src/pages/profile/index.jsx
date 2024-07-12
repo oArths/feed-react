@@ -102,7 +102,7 @@ export default function Profile() {
                                 CommentsCount={Article.comments_count}
                                 HeartCount={Article.likes_count}
                                 like={Article.liked_by_user}
-                                image={Article.image}
+                                image={baseURL + Article.image}
                                 onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
                                 onclickComments={() => (window.location.href = '/home/article')}
                                 User={userData[1]}
