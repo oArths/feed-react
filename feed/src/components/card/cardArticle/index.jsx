@@ -15,13 +15,10 @@ export default function CardAricle({ Title,
     const [ModalEditPost, setModalEditPost] = useState(false)
     const [ModalEdit, setModalEdit] = useState(false)
     const [PostEdit, setPostEdit] = useState(PostIndex)
-    const [imagePost, setImage] = useState(PostImage)
-    // const [ImageNull, setImageNull] = useState(false)
+    const baseURL = "http://127.0.0.1:8000/img/user/";
+    const [imagePost, setImage] = useState({ file: true, url: PostImage })
+    const [ImageNull, setImageNull] = useState(false)
 
-    // const closeImage = () => {
-    //     setImage(null);
-    //     setImageNull(true);
-    // };
 
     const UpdateUser = (index) => {
         if (PostEdit === index) {
@@ -45,7 +42,7 @@ export default function CardAricle({ Title,
             <div className="header">
                 <div className="userConatiner">
                     <div className="UserPhoto">
-                        <img className="ImgeUser" src={UserImage} />
+                        <img className="ImgeUser" src={baseURL + UserImage} />
                     </div>
                     <div className="UserName">{truncateText(User, 20)}</div>
                 </div>
@@ -67,10 +64,9 @@ export default function CardAricle({ Title,
                     {truncateText(Title, 120)}
                 </div>
             </div>
-            {null !== (image) && (
-
+            {null !== image && (
                 <div className="image">
-                    <img className="ImgTag" src={image} />
+                    <img className="ImgTag" src={baseURL +image} />
                 </div>
             )}
             <div className="comentarios">
@@ -93,16 +89,16 @@ export default function CardAricle({ Title,
             </div>
             <ModalPostEdit
                 Title="Editar publicação"
-                CloseModal={() => setModalEditPost(!ModalEditPost)}
+                CloseModal={() => (setModalEditPost(!ModalEditPost), setImageNull(!ImageNull))}
                 setImageEdit={setImage}
                 imageEdit={imagePost}
                 IsOpen={ModalEditPost}
+                CloseIsOpen={() => setModalEditPost(!ModalEditPost)}
                 Description={Title}
                 UserImage={UserImage}
                 User={User}
                 idPost={PostId}
-            // ClearImage={ImageNull}
-            // closeImage={closeImage}
+            ClearImage={ImageNull}
             />
         </div>
     )
