@@ -10,30 +10,30 @@ export default function Profile() {
     const [ModalUpdateOpen, setModalUpdateOpen] = useState(false)
     const [ModalEdit, setModalEdit] = useState(false)
     const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
-    
-    const [Article, setArticle] = useState([])
-    const [like, setLike] = useState(false)
-        const [image, setImage] = useState(userData[7])
 
     const baseURL = "http://127.0.0.1:8000/img/user/";
+    const [Article, setArticle] = useState([])
+    const [like, setLike] = useState(false)
+    const [image, setImage] = useState({ file: null, url: baseURL + userData[7] })
 
 
 
 
-    
+
+
     const LikePost = (articleId, Liked) => {
         const method = Liked ? 'DELETE' : 'POST';
-            fetch(`http://127.0.0.1:8000/api/auth/like/article`, {
-                method : method,
-                headers: {
-                    'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    'article_id': articleId,
-                    'user_id': UserId
-                })
+        fetch(`http://127.0.0.1:8000/api/auth/like/article`, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                'article_id': articleId,
+                'user_id': UserId
             })
+        })
             .then(response => {
                 return response.json()
             })
@@ -42,34 +42,34 @@ export default function Profile() {
                 setLike(!like)
             })
             .catch(error => {
-                console.log("erro",error.error)
+                console.log("erro", error.error)
             })
-        
+
     }
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/auth/articles/user/${UserId}`,{
-            method  : 'GET',
-            headers : {
-                'Content-Type' : 'appiclation/json',
-                'Authorization' : `Bearer ${token}` 
+        fetch(`http://127.0.0.1:8000/api/auth/articles/user/${UserId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'appiclation/json',
+                'Authorization': `Bearer ${token}`
             },
-        }) 
-        .then(response => {
-            if(!response.ok){
-                return response.json().then(errorData => {
-                    throw errorData
-                })
-            }
-            return response.json()
         })
-        .then(data =>{
-            setArticle(data.data)
-            console.log(data);
-            
-        })
-        .catch(error =>{
-            console.log("error", error)
-        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errorData => {
+                        throw errorData
+                    })
+                }
+                return response.json()
+            })
+            .then(data => {
+                setArticle(data.data)
+                console.log(data);
+
+            })
+            .catch(error => {
+                console.log("error", error)
+            })
     }, [like, modify])
 
 
@@ -94,7 +94,7 @@ export default function Profile() {
                     {Article.map((Article, index) => (
                         <div key={index} >
                             <CardAricle
-                                PostImage={Article.image === null ? null :  baseURL + Article.image}
+                                PostImage={Article.image === null ? null : baseURL + Article.image}
                                 IsUser={true}
                                 PostIndex={index}
                                 UserImage={userData[7]}
@@ -102,19 +102,18 @@ export default function Profile() {
                                 HeartCount={Article.likes_count}
                                 like={Article.liked_by_user}
                                 image={Article.image}
-                                onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
+                                onclickHeart={() => (LikePost(Article.id, Article.liked_by_user))}
                                 onclickComments={() => (window.location.href = '/home/article')}
                                 User={userData[1]}
-                                Title={Article.title} 
-                                
+                                Title={Article.title}
                                 PostId={Article.id}
-                                />
+                            />
                         </div>
                     ))}
 
                 </div>
             </div>
-            
+
 
             <ModalUpdateuser
                 UserValueName={userData[1]}
