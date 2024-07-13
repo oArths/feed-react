@@ -5,7 +5,7 @@ import Heart from "../../../assests/imgs/heart.svg"
 import HeartSolid from "../../../assests/imgs/heart-solid.svg"
 import DropDownOptions from "../../dropdown/dropDownOption/index"
 import ModalPostEdit from "../../modalPostEdit/index"
-
+import { useToken } from "../../../context/UseToken"
 import { useState } from "react"
 
 
@@ -18,7 +18,30 @@ export default function CardAricle({ Title,
     const baseURL = "http://127.0.0.1:8000/img/user/";
     const [imagePost, setImage] = useState({ file: true, url: PostImage })
     const [ImageNull, setImageNull] = useState(false)
+    const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
 
+
+    const UserDeletePost = () => {
+        console.log("delete Post")
+        fetch(`http://127.0.0.1:8000/api/auth/articles/delete/${PostId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Post deletardo com sucesso:', data);
+                setModify(!modify)
+              
+            })
+            .catch((error) => {
+                console.error('Erro ao apagar post', error);
+            });
+
+
+    }
 
     const UpdateUser = (index) => {
         if (PostEdit === index) {
@@ -53,7 +76,7 @@ export default function CardAricle({ Title,
                         </div>
                         <DropDownOptions
                             IsOpen={ModalEdit}
-                            id={PostId}
+                            UserDelete={() => (UserDeletePost(), setModalEdit(!ModalEdit))}
                             UserEdit={() => (setModalEditPost(!ModalEditPost), setModalEdit(!ModalEdit))}
                         />
                     </>
