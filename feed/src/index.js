@@ -11,31 +11,33 @@ import { TokenProvider } from './context/TokenContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-function renderPage (){
+function renderPage() {
   const path = window.location.pathname
+  const pathClear = path.split('/')
 
-  switch (path) {
-    case '/':
-      return <Login/>
-    case '/cadastro':
-      return <Cadastro/>
-    case '/home':
-      return <Home/>
-    case '/home/article':
-      return <ArticleComments/>
-    case '/profile':
-      return <Profile/>
+  switch (pathClear[1]) {
+    case '':
+      return <Login />
+    case 'cadastro':
+      return <Cadastro />
+    case 'home':
+      if (pathClear[2] === 'article') {
+        return <ArticleComments />
+      }
+      return <Home />
+    case 'profile':
+      return <Profile />
     default:
-      return <Login/>
+      return <Login />
   }
 }
 root.render(
   <TokenProvider>
-<React.StrictMode>
-    {renderPage()}
-  </React.StrictMode>
+    <React.StrictMode>
+      {renderPage()}
+    </React.StrictMode>
   </TokenProvider>
-  
+
 );
 
 reportWebVitals();
