@@ -38,11 +38,10 @@ export default function Profile() {
                 return response.json()
             })
             .then(data => {
-                console.log(method === 'POST' ? "curtiu" : "descurtiu", data);
                 setLike(!like)
             })
             .catch(error => {
-                console.log("erro", error.error)
+                window.location.href = ''; 
             })
 
     }
@@ -64,11 +63,10 @@ export default function Profile() {
             })
             .then(data => {
                 setArticle(data.data)
-                console.log(data);
 
             })
             .catch(error => {
-                console.log("error", error)
+                window.location.href = ''; 
             })
     }, [like, modify])
 

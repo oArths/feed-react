@@ -22,7 +22,6 @@ export default function CardAricle({ Title,
 
 
     const UserDeletePost = () => {
-        console.log("delete Post")
         fetch(`http://127.0.0.1:8000/api/auth/articles/delete/${PostId}`, {
             method: 'DELETE',
             headers: {
@@ -32,7 +31,6 @@ export default function CardAricle({ Title,
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Post deletardo com sucesso:', data);
                 setModify(!modify)
               
             })

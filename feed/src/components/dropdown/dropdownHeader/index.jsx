@@ -8,7 +8,6 @@ export default function DropDownHeader({ IsOpen, Blur, Userperfil, }) {
 
 
     const UserLogout = () => {
-        console.log("token", token)
         fetch('http://127.0.0.1:8000/api/auth/siguin/delete', {
             method: 'DELETE',
             headers: {
@@ -18,7 +17,6 @@ export default function DropDownHeader({ IsOpen, Blur, Userperfil, }) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Logout realizado com sucesso:');
                 setToken("");
                 setUserId("")
                 setUserData("")

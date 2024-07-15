@@ -43,13 +43,12 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
                 return response.json();
             })
             .then(data => {
-                console.log(data)
                 UserInfo(token, setUserData)
                 setModify(!modify)
 
             })
             .catch(error => {
-                console.log('Error:', error);
+                window.location.href = '';
             })
 
     }
