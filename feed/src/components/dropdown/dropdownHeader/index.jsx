@@ -18,10 +18,10 @@ export default function DropDownHeader({ IsOpen, Blur, Userperfil, }) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Logout realizado com sucesso:', data);
-                setToken(null);
-                setUserId(null)
-                setUserData(null)
+                console.log('Logout realizado com sucesso:');
+                setToken("");
+                setUserId("")
+                setUserData("")
                 window.location.href = "/"
             })
             .catch((error) => {
