@@ -9,10 +9,7 @@ import { useToken } from "../../context/UseToken"
 
 export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearImage}) {
 
-    const [modalTag, setmodalTag] = useState(false)
-    const [ token, setToken, UserId, setUserId,userData, setUserData] = useToken()
- 
- 
+    const [modalTag, setmodalTag] = useState(false) 
     const [OptionSelect, setOptionSelect] = useState("");
     const [tag, setTag] = useState("")
     const [text, setText] = useState("")
@@ -20,6 +17,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
     const [imageFile, setImageFile] = useState(null); 
     const data = ['Arroz', 'Farrofa', 'Comida', 'Comida', 'Comida', 'Comida']
     const [error, setError] = useState({})
+    const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
 
 
     const SubmitInfo = () => {
@@ -47,13 +45,13 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
             return response.json();
         })
         .then(data => {
-            console.log(data)
             Subbmit()
+            setModify(!modify)
             setError({})
         })
         .catch(error => {
             setError(error.erro || {});
-            console.log('Error:', error.erro);
+            window.location.href = '';
         })
 
     }
