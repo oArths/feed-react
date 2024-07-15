@@ -113,7 +113,7 @@ export default function Home() {
                     like={Article.liked_by_user}
                     image={Article.image}
                     onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
-                    onclickComments={() => (window.location.href = '/home/article')}
+                    onclickComments={() => (window.location.href = `/home/article/${Article.id}`)}
                     User={Article.user.username}
                     Title={Article.title}/>
                 </div>
