@@ -1,8 +1,10 @@
 import styles from "./style.module.css"
 import { useState } from "react";
 import { useToken } from "../../../context/UseToken"
+import UserInfo from '../../../utils/getInfoUser';
 
-export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image,  UserValueName, UserValueDescription }) {
+
+export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, UserValueName, UserValueDescription }) {
     const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
 
     const [error, setError] = useState({})
@@ -18,61 +20,56 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
         }));
     };
     const onClickUpdateUser = () => {
-    //    return console.log(values.name,values.bio, image);
         const formData = new FormData
 
-        if(image.file){
+        if (image.file) {
             formData.append('image', image.file)
-         }
- 
- 
-         
-         formData.append('username', values.name)
-        //  formData.append('description', "ds")
-        //  formData.append('title', text)
-        //  formData.append('id', idPost)
+        }
+
+        formData.append('username', values.name)
         fetch('http://127.0.0.1:8000/api/auth/siguin/update/?_method=PUT', {
-            method : 'POST',
-            headers : {
-                'Authorization' : `Bearer ${token}` 
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`
             },
-            body : formData
+            body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    throw errorData;
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data)
-            setModify(!modify)
-        })
-        .catch(error => {
-            console.log('Error:', error.erro);
-        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errorData => {
+                        throw errorData;
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data)
+                UserInfo(token, setUserData)
+                setModify(!modify)
+
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            })
 
     }
-    
+
 
 
     const openFileSelector = () => {
         document.querySelector(".input-files").click();
     };
-    const baseURL = "http://127.0.0.1:8000/img/user/";
 
     if (isOpen) {
         return (
 
             <div className={styles.blur} onClick={onClickBlur}>
                 <div className={styles.Container} onClick={(e) => { e.stopPropagation() }}>
-                   <div className={styles.ConatinerImage}>
-                   <div className={styles.UserPhoto} onClick={openFileSelector}>
-                        <img className={styles.ImgeUser} src={image.url} />
+                    <div className={styles.ConatinerImage}>
+                        <div className={styles.UserPhoto} onClick={openFileSelector}>
+                            <img className={styles.ImgeUser} src={image.url} />
+                        </div>
                     </div>
-                   </div>
                     <input type="file"
                         accept="image/*"
                         className="input-files"
@@ -87,7 +84,7 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
                             if (files[0] && files) {
                                 const imageFile = files[0];
                                 const imageUrl = URL.createObjectURL(imageFile);
-                                setImage({ file: imageFile, url:  imageUrl });
+                                setImage({ file: imageFile, url: imageUrl });
                             }
                         }}
                     />
@@ -95,22 +92,22 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
 
                         <div className={styles.InputConatiner}>
                             <div className={styles.Title}>Nome</div>
-                            <input type='text' 
-                            onChange={(e) => handleInputChange('name', e.target.value )}  
-                            value={values.name}
-                            placeholder='Nome'
-                            className={styles.inputLogin} />
+                            <input type='text'
+                                onChange={(e) => handleInputChange('name', e.target.value)}
+                                value={values.name}
+                                placeholder='Nome'
+                                className={styles.inputLogin} />
                             <div className={styles.error}>{error && <div>{error.email}</div>}</div>
                         </div>
 
                         <div className={styles.InputConatiner}>
                             <div className={styles.Title}>Bio</div>
-                            <input type='text' 
-                            onChange={(e) => handleInputChange('bio', e.target.value )} 
-                            maxLength={150} 
-                            value={values.bio} 
-                            placeholder='E-mail' 
-                            className={styles.inputLogin} />
+                            <input type='text'
+                                onChange={(e) => handleInputChange('bio', e.target.value)}
+                                maxLength={150}
+                                value={values.bio}
+                                placeholder='E-mail'
+                                className={styles.inputLogin} />
                             <div className={styles.error}>{error && <div>{error.email}</div>}</div>
                         </div>
 
