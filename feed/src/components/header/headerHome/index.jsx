@@ -1,6 +1,7 @@
 import "./style.css"
 import home from "../../../assests/imgs/home-alt.svg"
 import plus from "../../../assests/imgs/plus-circle.svg"
+import UserDefault from "../../../assests/imgs/userdefault.jpg"
 
 
 export default function HeaderHome({ UserPerfil, onclickPlus, onclickHome, onclickPerfil }) {
@@ -14,7 +15,7 @@ export default function HeaderHome({ UserPerfil, onclickPlus, onclickHome, oncli
                 <img className="img" src={plus} />
             </div>
             <div className="perfil" onClick={onclickPerfil}>
-                <img  className="ImgeUser" src={UserPerfil} />
+                <img  className="ImgeUser" src={UserPerfil === null ? UserDefault :UserPerfil} />
             </div>
 
         </div>

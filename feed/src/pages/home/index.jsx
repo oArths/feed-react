@@ -96,6 +96,7 @@ export default function Home() {
     return (
         <div className={styles.body}>
             <HeaderHome
+            UserPerfil={baseURL + userData[7]}
                 onclickPerfil={() => setDropDownOpen(!DropDownOpen)}
                 onclickHome={() => (window.location.href = '/home')}
                 onclickPlus={() => setCreateOpen(!CreateOpen)}
@@ -106,7 +107,7 @@ export default function Home() {
 
                 <div key={index} >
                 <CardAricle
-                    UserImage={userData[7]}
+                    UserImage={Article.user.image}
                     CommentsCount={Article.comments_count}
                     HeartCount={Article.likes_count}
                     like={Article.liked_by_user}

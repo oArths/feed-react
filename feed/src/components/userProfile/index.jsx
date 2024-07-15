@@ -1,4 +1,5 @@
 import styles from "./style.module.css"
+import UserDefault from "../../assests/imgs/userdefault.jpg"
 
 
 export default function UserProfile({ UserImage, User, UserBio,onClickEditProfile, disabled }) {
@@ -7,7 +8,7 @@ export default function UserProfile({ UserImage, User, UserBio,onClickEditProfil
         <div className={styles.card}>
             <div className={styles.userConatiner}>
                 <div className={styles.UserInfo}>
-                <div className={styles.UserName}>{User}</div>
+                <div className={styles.UserName}>{UserImage === null ? UserDefault :User}</div>
                 <div className={styles.UserBio}>{UserBio}</div>
                 </div>
                 <div className={styles.UserPhoto}>

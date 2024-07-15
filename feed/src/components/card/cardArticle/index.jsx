@@ -7,7 +7,7 @@ import DropDownOptions from "../../dropdown/dropDownOption/index"
 import ModalPostEdit from "../../modalPostEdit/index"
 import { useToken } from "../../../context/UseToken"
 import { useState } from "react"
-
+import UserDefault from "../../../assests/imgs/userdefault.jpg"
 
 export default function CardAricle({ Title,
     User, UserImage, IsUser,
@@ -65,7 +65,7 @@ export default function CardAricle({ Title,
             <div className="header">
                 <div className="userConatiner">
                     <div className="UserPhoto">
-                        <img className="ImgeUser" src={baseURL + UserImage} />
+                        <img className="ImgeUser" src={UserImage === null ? UserDefault : baseURL + UserImage} />
                     </div>
                     <div className="UserName">{truncateText(User, 20)}</div>
                 </div>
