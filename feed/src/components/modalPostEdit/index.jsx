@@ -8,7 +8,7 @@ import { useToken } from "../../context/UseToken"
 import { useState, useEffect } from "react"
 
 export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
-    UserImage, User, setImageEdit, imageEdit, idPost, ClearImage,CloseIsOpen }) {
+    UserImage, User, setImageEdit, imageEdit, idPost, ClearImage, CloseIsOpen }) {
 
     const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
     const [modalTag, setmodalTag] = useState(false)
@@ -22,12 +22,12 @@ export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
     const Subbmit = () => {
         const formData = new FormData
 
-        if(imageEdit.file){
-           formData.append('image', imageEdit.file)
+        if (imageEdit.file) {
+            formData.append('image', imageEdit.file)
         }
 
 
-        
+
         formData.append('title', text)
         formData.append('description', "ds")
         formData.append('title', text)
@@ -49,12 +49,11 @@ export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
                 return response.json();
             })
             .then(data => {
-                console.log(data)
                 setModify(!modify)
                 CloseIsOpen()
             })
             .catch(error => {
-                console.log('Error:', error.erro);
+                window.location.href = '';;
             })
     }
 
@@ -64,15 +63,14 @@ export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
                 'Authorization': `Bearer ${token}`
             }
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log("nova reque", data.data.image );
-            setText(data.data.title);
-            setImageEdit({ file: null,  url:  data.data.image === null ? null : baseURL + data.data.image });
-        })
-        .catch(error => {
-            console.log('Error fetching post data:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                setText(data.data.title);
+                setImageEdit({ file: null, url: data.data.image === null ? null : baseURL + data.data.image });
+            })
+            .catch(error => {
+                window.location.href = '';
+            });
     };
 
 
@@ -137,12 +135,12 @@ export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
                             if (files[0] && files) {
                                 const imageFile = files[0];
                                 const imageUrl = URL.createObjectURL(imageFile);
-                                setImageEdit({ file: imageFile, url:  imageUrl });
+                                setImageEdit({ file: imageFile, url: imageUrl });
                             }
                         }}
                     />
                     {imageEdit.url !== null &&
-                        
+
                         <div className={styles.ImageRender}>
                             <img className={styles.Close} src={Close} onClick={closeImage} />
                             <img src={imageEdit.url} className={styles.imageFull} />
