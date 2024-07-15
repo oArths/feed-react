@@ -1,8 +1,9 @@
 import styles from "./style.module.css"
 import Comments from "../../assests/imgs/comments.svg"
 import Heart from "../../assests/imgs/heart.svg"
+import UserDefault from "../../assests/imgs/userdefault.jpg"
 
-export default function ReplaceComments({ UserImage, User, onclickHeart, onclickComments }) {
+export default function ReplaceComments({ UserImage, User, onclickHeart, onclickComments, Content, HeartCount, CommentsCount }) {
 
     const truncateText = (text, maxLength,) => {
         if (!text) return 'undefind key';
@@ -17,24 +18,24 @@ export default function ReplaceComments({ UserImage, User, onclickHeart, onclick
             <div className={styles.ConatinerCommentarios}>
                 <div className={styles.userConatiner}>
                     <div className={styles.UserPhoto}>
-                        <img className={styles.ImgeUser} src={UserImage} />
+                        <img className={styles.ImgeUser} src={UserImage === null ? UserDefault :UserImage} />
                     </div>
                     <div className="UserName">{truncateText(User, 20)}</div>
                 </div>
                 <div className={styles.title}>
-                    <textarea className={styles.input} type="text" maxLength={200} value="asaas" disabled />
+                    <textarea className={styles.input} type="text" maxLength={200} value={Content} disabled />
                 </div>
                 <div className={styles.comentarios}>
                     <div className={styles.commetsContainer}>
                         <div className={styles.Houver} onClick={onclickHeart}>
                             <img className={styles.icon} src={Heart}  />
-                            <div className={styles.info}>12</div>
+                            <div className={styles.info}>{HeartCount}</div>
                         </div>
                     </div>
                     <div className={styles.commetsContainer}>
                         <div className={styles.Houver} onClick={onclickComments}>
                             <img className={styles.icon} src={Comments}  />
-                            <div className={styles.info}>79</div>
+                            <div className={styles.info}>{CommentsCount}</div>
                         </div>
                     </div>
 
