@@ -11,35 +11,34 @@ export default function Home() {
     const [DropDownOpen, setDropDownOpen] = useState(false)
     const [CreateOpen, setCreateOpen] = useState(false)
     const [ModalOpen, setOpenModal] = useState(false);
-   const [ImageNull, setImageNull] = useState(false)
-   const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
-   const [Article, setArticle] = useState([])
+    const [ImageNull, setImageNull] = useState(false)
+    const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
+    const [Article, setArticle] = useState([])
     const [like, setLike] = useState(false)
-    
+
     const LikePost = (articleId, Liked) => {
         const method = Liked ? 'DELETE' : 'POST';
-            fetch(`http://127.0.0.1:8000/api/auth/like/article`, {
-                method : method,
-                headers: {
-                    'Content-Type' : 'application/json',
-                    'Authorization' : `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    'article_id': articleId,
-                    'user_id': UserId
-                })
+        fetch(`http://127.0.0.1:8000/api/auth/like/article`, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                'article_id': articleId,
+                'user_id': UserId
             })
+        })
             .then(response => {
                 return response.json()
             })
             .then(data => {
-                console.log(method === 'POST' ? "curtiu" : "descurtiu", data);
                 setLike(!like)
             })
             .catch(error => {
-                console.log("erro",error.error)
+                window.location.href = ''; 
             })
-        
+
     }
 
     useEffect(() => {
@@ -59,12 +58,11 @@ export default function Home() {
                 const userArticles = await response.json();
                 if (userArticles.data.length > 0) {
                     setArticle(userArticles.data);
-                    console.log("User articles", userArticles);
                 } else {
                     fetchGeneralArticles();
                 }
             } catch (error) {
-                console.log("error", error);
+                window.location.href = ''; 
             }
         };
 
@@ -83,54 +81,53 @@ export default function Home() {
                 }
                 const generalArticles = await response.json();
                 setArticle(generalArticles.data);
-                console.log("General articles", generalArticles);
             } catch (error) {
-                console.log("error", error);
+                window.location.href = ''; 
             }
         };
 
         fetchUserArticles();
-    }, [like]);
+    }, [like, modify]);
     const baseURL = "http://127.0.0.1:8000/img/user/";
 
     return (
         <div className={styles.body}>
             <HeaderHome
-            UserPerfil={baseURL + userData[7]}
+                UserPerfil={baseURL + userData[7]}
                 onclickPerfil={() => setDropDownOpen(!DropDownOpen)}
                 onclickHome={() => (window.location.href = '/home')}
                 onclickPlus={() => setCreateOpen(!CreateOpen)}
             />
             <div className={styles.feed}>
-                
-            {Article.map((Article, index ) => (
 
-                <div key={index} >
-                <CardAricle
-                    UserImage={Article.user.image}
-                    CommentsCount={Article.comments_count}
-                    HeartCount={Article.likes_count}
-                    like={Article.liked_by_user}
-                    image={Article.image}
-                    onclickHeart={()=> (LikePost(Article.id, Article.liked_by_user))}
-                    onclickComments={() => (window.location.href = `/home/article/${Article.id}`)}
-                    User={Article.user.username}
-                    Title={Article.title}/>
-                </div>
-            ))}
+                {Article.map((Article, index) => (
+
+                    <div key={index} >
+                        <CardAricle
+                            UserImage={Article.user.image}
+                            CommentsCount={Article.comments_count}
+                            HeartCount={Article.likes_count}
+                            like={Article.liked_by_user}
+                            image={Article.image}
+                            onclickHeart={() => (LikePost(Article.id, Article.liked_by_user))}
+                            onclickComments={() => (window.location.href = `/home/article/${Article.id}`)}
+                            User={Article.user.username}
+                            Title={Article.title} />
+                    </div>
+                ))}
 
 
             </div>
             <DropDownHeader IsOpen={DropDownOpen} Blur={() => setDropDownOpen(!DropDownOpen)} Userperfil={() => (window.location.href = "/profile")} />
-            <ModalPost 
-            Title="Criar publicação" 
-            IsOpen={CreateOpen} 
-            Subbmit={() => setCreateOpen(!CreateOpen)} 
-            CloseModal={() => setOpenModal(true)} 
-            ClearImage={ImageNull}
+            <ModalPost
+                Title="Criar publicação"
+                IsOpen={CreateOpen}
+                Subbmit={() => setCreateOpen(!CreateOpen)}
+                CloseModal={() => setOpenModal(true)}
+                ClearImage={ImageNull}
 
             />
-        
+
             <ModalDeltePost
                 title="Descartar Publicação?"
                 Confirm="Não"
