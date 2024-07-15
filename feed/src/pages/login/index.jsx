@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useToken } from '../../context/UseToken';
 import './style.css';
+import UserInfo from '../../utils/getInfoUser';
 
 
 
@@ -38,37 +39,22 @@ export default function Login() {
             const IdUser = data.UserId
             setToken(newtoken[1])
             setUserId(IdUser)
-            setError({});  
+            return UserInfo(newtoken[1], setUserData)
+
         })
+        .then(userInfoSuccess => {
+            if (userInfoSuccess) {
+              window.location.href = '/home';
+              setError({});
+            } else {
+              console.log('Erro ao obter informações do usuário', userInfoSuccess);
+            }
+          })
         .catch(error => {
             setError(error.error || {});
             console.error('Error:', error);
         });
     }
-    useEffect(()=>{
-       if(userId){
-        fetch('http://127.0.0.1:8000/api/auth/user', {
-            method: 'GET',
-            headers:{
-                'Content-Type' : 'application/json',
-                'Authorization' : `Bearer ${token}`,
-            }
-        })
-        .then(response =>{
-            return response.json();
-        })
-        .then(data => {
-            setUserData(Object.values(data.data))
-            console.log("sssss",userData);
-            window.location.href = '/home'
-        })
-        .catch(error => {
-            console.error('Error userdata:', error.error);
-        });
-
-       }
-
-    },[userId])
 
     return (
         <div className="Body">
