@@ -5,70 +5,110 @@ import HeaderArticleComments from "../../components/header/headerArticleComments
 import ReplaceComments from "../../components/ReplaceComments"
 import ModalComment from "../../components/ModalComment/index.jsx";
 import ModalDeltePost from "../../components/modals/modalDeletePost/index.jsx"
+import { useToken } from "../../context/UseToken"
 
 
 export default function ArticleComments() {
-    const [CreateOpen, setCreateOpen] = useState(false) 
+    const [CreateOpen, setCreateOpen] = useState(false)
     const [ModalOpen, setOpenModal] = useState(false);
+    const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
     const [image, setImage] = useState(null)
-    const [ reply, setReplay] = useState({
+    const [comments, setComments] = useState([])
+    const [article, setArticle] = useState([])
+    const [reply, setReplay] = useState({
         user: 'texte',
         title: 'texte',
     })
+    const path = window.location.href
+    const id = path.split('/')
 
-    const NewReply = (Info) =>{
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/auth/comment/all/${id[5]}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }
+
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errorData => {
+                        throw errorData
+                    })
+                }
+                return response.json()
+            })
+            .then(data => {
+                setArticle(data.data.article[0])
+                setComments(data.data.comments)
+                console.log("data", data.data.comments)
+                console.log("data", data.data.article[0])
+            })
+            .catch(error => {
+                console.log("error", error)
+            })
+    }, [])
+
+    const NewReply = (Info) => {
         setReplay(Info)
         setCreateOpen(!CreateOpen)
-        // console.log(reply)
-    } 
+    }
     return (
         <div className={styles.body} >
             <HeaderArticleComments onclickBack={() => (window.location.href = '/home')} Title="Comentarios" />
             <div className={styles.feed} >
-                <CardAricle
-                onclickComments={() => NewReply({
-                    user: 'dsds',
-                    title: 'dsdssssss',
-                })}
-                    // UserImage={}
-                    User="hehehe"
-                    Title="Est qui aut harum est corrupti modi omnis. occaecati rerum soluta et quos. Cupiditate nostrum placeat est ducimus iusto repudiandae. Iure nostrum explicabo tempore rerum tenetur aut."/>
+                {article && article.user && (
+                    <CardAricle
+                        UserImage={article.user.image}
+                        User={article.user.username}
+                        image={article.image}
+                        Title={article.title}
+                        like={article.liked_by_user}
+                        HeartCount={article.likes_count}
+                        CommentsCount={article.comments_count}
+                    />
+                )}
                 <div className={styles.Header}>
                     <div className={styles.Title}>
                         Respostas
                     </div>
                 </div>
-                <ReplaceComments onclickComments={() => NewReply({
-                    user: 'comments',
-                    title: 'commentsss',
-                })} />
-                <ReplaceComments onclickComments={() => NewReply({
-                    user: 'comments',
-                    title: 'commentsss',
-                })} />
-                <ReplaceComments onclickComments={() => NewReply({
-                    user: 'comments',
-                    title: 'commentsss',
-                })} />
+                {comments.map((Comments, index) => (
+                    <div key={index}>
+
+                        <ReplaceComments onclickComments={() => NewReply({
+                            user: 'comments',
+                            title: 'commentsss',
+                        })} 
+                        Content={Comments.content}
+                         HeartCount={Comments.likes_comments_count}
+                         CommentsCount={Comments.replies}
+                        User={Comments.user.username}
+                        UserImage={Comments.user.image}
+                        />
+                    </div>
+                ))}
+
             </div>
-            <ModalComment 
-            UserAwnser={reply.user}
-            UserTextAwnser={reply.title}
-            User={reply.user}
-            IsOpen={CreateOpen} 
-            Subbmit={() => setCreateOpen(!CreateOpen)} 
-            CloseModal={() => setOpenModal(true)}  
-            setImage={setImage} image={image}
-            
+            <ModalComment
+                UserAwnser={reply.user}
+                UserTextAwnser={reply.title}
+                User={reply.user}
+                IsOpen={CreateOpen}
+                Subbmit={() => setCreateOpen(!CreateOpen)}
+                CloseModal={() => setOpenModal(true)}
+                setImage={setImage} image={image}
+
             />
-            <ModalDeltePost 
-            title="Descartar Comentario?" 
-            Confirm="Não"
-            onClickConfirm={() => setOpenModal(!ModalOpen)}
-            Delete="Descartar"
-            onClickDelete={() =>(setCreateOpen(!CreateOpen), setOpenModal(!ModalOpen), setImage(null)) }
-            isOpen={ModalOpen}
-            /> 
+            <ModalDeltePost
+                title="Descartar Comentario?"
+                Confirm="Não"
+                onClickConfirm={() => setOpenModal(!ModalOpen)}
+                Delete="Descartar"
+                onClickDelete={() => (setCreateOpen(!CreateOpen), setOpenModal(!ModalOpen), setImage(null))}
+                isOpen={ModalOpen}
+            />
         </div>
     )
 }
