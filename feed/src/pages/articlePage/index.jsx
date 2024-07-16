@@ -102,7 +102,7 @@ export default function ArticleComments() {
             }
             )
             .then(data => {
-                window.location.href = ''; 
+                window.location.href = '';
                 setModify(!modify)
             })
             .catch(error => {
@@ -169,7 +169,7 @@ export default function ArticleComments() {
                 placeholderText={reply.user}
                 UserTextAwnser={reply.title}
                 User={userData[1]}
-                UserImage={userData[7]}
+                UserImage={userData[8]}
                 IsOpen={CreateOpen}
                 CloseFinaly={() => setCreateOpen(!CreateOpen)}
                 CloseModal={() => setOpenModal(true)}

@@ -91,7 +91,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
                     </div>
                     <div className={styles.userConatiner}>
                         <div className={styles.UserPhoto}>
-                            <img className={styles.ImgeUser} src={baseURL + userData[7]} />
+                            <img className={styles.ImgeUser} src={baseURL + userData[8]} />
                         </div>
                         <div className="UserName">{truncateText(userData[1], 20)}</div>
                     </div>
