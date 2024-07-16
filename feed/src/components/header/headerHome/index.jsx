@@ -5,6 +5,7 @@ import UserDefault from "../../../assests/imgs/userdefault.jpg"
 
 
 export default function HeaderHome({ UserPerfil, onclickPlus, onclickHome, onclickPerfil }) {
+    const baseURL = "http://127.0.0.1:8000/img/user/";
 
     return (
         <div className="Conatiner">
@@ -15,7 +16,7 @@ export default function HeaderHome({ UserPerfil, onclickPlus, onclickHome, oncli
                 <img className="img" src={plus} />
             </div>
             <div className="perfil" onClick={onclickPerfil}>
-                <img  className="ImgeUser" src={UserPerfil === null ? UserDefault :UserPerfil} />
+                <img  className="ImgeUser" src={UserPerfil === null ? UserDefault :baseURL +  UserPerfil} />
             </div>
 
         </div>

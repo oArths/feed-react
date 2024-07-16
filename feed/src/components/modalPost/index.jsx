@@ -6,6 +6,7 @@ import Trash from "../../assests/imgs/trash-solid.svg"
 import Hashtag from "../../assests/imgs/hashtag.svg"
 import { useState, useEffect } from "react"
 import { useToken } from "../../context/UseToken"
+import UserDefault from "../../assests/imgs/userdefault.jpg"
 
 export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearImage}) {
 
@@ -91,7 +92,7 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
                     </div>
                     <div className={styles.userConatiner}>
                         <div className={styles.UserPhoto}>
-                            <img className={styles.ImgeUser} src={baseURL + userData[8]} />
+                            <img className={styles.ImgeUser} src={userData[8] === null ? UserDefault : baseURL + userData[8]} />
                         </div>
                         <div className="UserName">{truncateText(userData[1], 20)}</div>
                     </div>

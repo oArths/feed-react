@@ -10,6 +10,8 @@ export default function UserProfile({ UserImage, User, UserBio,onClickEditProfil
         }
         return text;
     };
+    const baseURL = "http://127.0.0.1:8000/img/user/";
+
     return (
         <div className={styles.card}>
             <div className={styles.userConatiner}>
@@ -18,7 +20,7 @@ export default function UserProfile({ UserImage, User, UserBio,onClickEditProfil
                 <div className={styles.UserBio}>{truncateText(UserBio, 100)}</div>
                 </div>
                 <div className={styles.UserPhoto}>
-                    <img className={styles.ImgeUser} src={UserImage === null ? UserDefault : UserImage} />
+                    <img className={styles.ImgeUser} src={UserImage === null ? UserDefault : baseURL + UserImage} />
                 </div>
             </div>
             <div className={styles.ButtonConatiner}>

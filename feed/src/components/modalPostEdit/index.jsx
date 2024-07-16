@@ -6,6 +6,7 @@ import Trash from "../../assests/imgs/trash-solid.svg"
 import DropDownTags from "../dropdown/dropDownTag"
 import { useToken } from "../../context/UseToken"
 import { useState, useEffect } from "react"
+import UserDefault from "../../assests/imgs/userdefault.jpg"
 
 export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
     UserImage, User, setImageEdit, imageEdit, idPost, ClearImage, CloseIsOpen }) {
@@ -105,7 +106,7 @@ export default function ModalPostEdit({ Title, Description, IsOpen, CloseModal,
                     </div>
                     <div className={styles.userConatiner}>
                         <div className={styles.UserPhoto}>
-                            <img className={styles.ImgeUser} src={baseURL + UserImage} />
+                            <img className={styles.ImgeUser} src={UserImage === null ? UserDefault : baseURL + UserImage} />
                         </div>
                         <div className="UserName">{truncateText(User, 20)}</div>
                     </div>
