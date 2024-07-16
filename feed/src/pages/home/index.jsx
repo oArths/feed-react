@@ -6,6 +6,8 @@ import ModalPost from "../../components/modalPost/index.jsx"
 import ModalDeltePost from "../../components/modals/modalDeletePost/index.jsx"
 import { useToken } from '../../context/UseToken';
 import styles from "./style.module.css"
+import { LogOutUser } from "../../utils"
+
 
 export default function Home() {
     const [DropDownOpen, setDropDownOpen] = useState(false)
@@ -29,16 +31,7 @@ export default function Home() {
                 'user_id': UserId
             })
         })
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setLike(!like)
-            })
-            .catch(error => {
-                window.location.href = ''; 
-            })
-
+        setLike(!like)
     }
 
     useEffect(() => {
@@ -53,16 +46,21 @@ export default function Home() {
                 });
                 if (!response.ok) {
                     const errorData = await response.json();
+                    errorData.status = response.status;
                     throw errorData;
                 }
                 const userArticles = await response.json();
                 if (userArticles.data.length > 0) {
                     setArticle(userArticles.data);
+                    console.log(userArticles.data)
                 } else {
                     fetchGeneralArticles();
                 }
             } catch (error) {
-                window.location.href = ''; 
+                console.log(error)
+                if (error.status === 401) {
+                    LogOutUser(setToken, setUserId, setUserData);
+                }
             }
         };
 
@@ -77,13 +75,18 @@ export default function Home() {
                 });
                 if (!response.ok) {
                     const errorData = await response.json();
+                    errorData.status = response.status;
                     throw errorData;
                 }
                 const generalArticles = await response.json();
                 setArticle(generalArticles.data);
+                console.log(generalArticles.data)
+
             } catch (error) {
-                window.location.href = ''; 
-            }
+                console.log(error)
+                if (error.status === 401) {
+                    LogOutUser(setToken, setUserId, setUserData);
+                }            }
         };
 
         fetchUserArticles();
@@ -93,7 +96,7 @@ export default function Home() {
     return (
         <div className={styles.body}>
             <HeaderHome
-                UserPerfil={baseURL + userData[7]}
+                UserPerfil={userData[8]}
                 onclickPerfil={() => setDropDownOpen(!DropDownOpen)}
                 onclickHome={() => (window.location.href = '/home')}
                 onclickPlus={() => setCreateOpen(!CreateOpen)}
