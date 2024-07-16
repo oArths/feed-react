@@ -1,5 +1,5 @@
 
-const UserInfo = (token, setUserData) => {
+export const UserInfo = (token, setUserData) => {
     return  fetch('http://127.0.0.1:8000/api/auth/user', {
         method: 'GET',
         headers: {
@@ -22,4 +22,11 @@ const UserInfo = (token, setUserData) => {
             return false;
         });
 }
-export default UserInfo
+
+
+export const LogOutUser = (setToken, setUserId, setUserData) => {
+    setToken("");
+    setUserId("")
+    setUserData("")
+    window.location.href = "/"
+}
