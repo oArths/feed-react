@@ -4,7 +4,9 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: #2975f82f;
+    background-color: #fafafa;
+    /* background-color: white; */
+
 }
 
 .container{
@@ -16,9 +18,14 @@
     height: 57vh;
     width: 400px;
     background-color: white;
+    border: 0.5px solid #ccc;
+    /* background-color: #f7f7f7;; */
+
     border-radius: 10px;
 }
 .titlepage{
+    /* width: 100%; */
+    /* text-align: center; */
     margin-top: 50px;
     font-weight: bold;
     font-size: 40px;
@@ -73,6 +80,7 @@
     height: 40px;
     width: 100%;
     text-align: center;
+    cursor: pointer;
     font-size: 14px;
     font-weight: semibold;
     color: white;
