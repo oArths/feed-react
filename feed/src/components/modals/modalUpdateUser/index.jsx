@@ -1,10 +1,11 @@
 import styles from "./style.module.css"
 import { useState } from "react";
 import { useToken } from "../../../context/UseToken"
-import UserInfo from '../../../utils/getInfoUser';
+import {UserInfo} from '../../../utils/';
 
 
-export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, UserValueName, UserValueDescription }) {
+export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, UserValueName,
+     UserValueDescription, close }) {
     const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
 
     const [error, setError] = useState({})
@@ -23,8 +24,8 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
 
         if (image.file) {
             formData.append('image', image.file)
-        }else{
-            formData.append('imageName', image.url)
+        } else {
+            formData.append('imageName', userData[8])
         }
         if (values.bio) {
             formData.append('bio', values.bio)
@@ -49,6 +50,7 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
             .then(data => {
                 UserInfo(token, setUserData)
                 setModify(!modify)
+                close()
 
             })
             .catch(error => {
