@@ -32,11 +32,11 @@
 .UserName{
     font-weight: bold;
     word-break: break-all;
-    font-size: 15px;
+    font-size: 24px;
 }
 .UserBio{
     word-break: break-all;
-    font-size: 13px;
+    font-size: 14px;
     color: #ccc;
 }
 .UserPhoto {
@@ -45,8 +45,8 @@
     justify-content: center;
     border: 1px solid #ccc;
     overflow: hidden;
-    width: 60px;
-    height: 60px;
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
 }
 .ImgeUser{
