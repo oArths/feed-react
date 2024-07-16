@@ -8,7 +8,6 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
     const [token, setToken, UserId, setUserId, userData, setUserData, modify, setModify] = useToken()
 
     const [error, setError] = useState({})
-    const [imageFile, setImageFile] = useState(null)
     const [values, setValues] = useState({
         name: UserValueName,
         bio: UserValueDescription,
@@ -24,6 +23,11 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
 
         if (image.file) {
             formData.append('image', image.file)
+        }else{
+            formData.append('imageName', image.url)
+        }
+        if (values.bio) {
+            formData.append('bio', values.bio)
         }
 
         formData.append('username', values.name)
@@ -74,12 +78,6 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
                         className="input-files"
                         hidden
                         onChange={({ target: { files } }) => {
-
-                            // if (files) {
-                            //     setImage(URL.createObjectURL(files[0]))
-                            // } else {
-                            //     setImage(null)
-                            // }
                             if (files[0] && files) {
                                 const imageFile = files[0];
                                 const imageUrl = URL.createObjectURL(imageFile);
@@ -105,7 +103,7 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
                                 onChange={(e) => handleInputChange('bio', e.target.value)}
                                 maxLength={150}
                                 value={values.bio}
-                                placeholder='E-mail'
+                                placeholder='Bio'
                                 className={styles.inputLogin} />
                             <div className={styles.error}>{error && <div>{error.email}</div>}</div>
                         </div>
