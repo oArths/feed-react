@@ -7,7 +7,7 @@ import Hashtag from "../../assests/imgs/hashtag.svg"
 import { useState, useEffect } from "react"
 import { useToken } from "../../context/UseToken"
 import UserDefault from "../../assests/imgs/userdefault.jpg"
-
+import { LogOutUser } from "../../utils"
 export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearImage}) {
 
     const [modalTag, setmodalTag] = useState(false) 
@@ -40,19 +40,25 @@ export default function ModalPost({ Title, IsOpen, CloseModal, Subbmit, ClearIma
         .then(response =>{
             if(!response.ok){
                 return response.json().then(errorData => {
+                    errorData.status = response.status;
                     throw errorData;
                 });
             }
             return response.json();
         })
         .then(data => {
-            Subbmit()
+            setText("")
+            setImageFile(null)
             setModify(!modify)
             setError({})
+            Subbmit()
         })
         .catch(error => {
             setError(error.erro || {});
-            window.location.href = '';
+            console.log(error)
+            if (error.status === 401) {
+                LogOutUser(setToken, setUserId, setUserData);
+            }   
         })
 
     }
