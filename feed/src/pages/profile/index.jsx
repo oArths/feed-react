@@ -15,7 +15,7 @@ export default function Profile() {
     const baseURL = "http://127.0.0.1:8000/img/user/";
     const [Article, setArticle] = useState([])
     const [like, setLike] = useState(false)
-    const [image, setImage] = useState({ file: null, url: baseURL + userData[8] })
+    const [image, setImage] = useState({ file: null, url:  userData[8] })
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/auth/articles/user/${UserId}`, {
