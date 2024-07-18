@@ -86,7 +86,8 @@ export default function Home() {
                 console.log(error)
                 if (error.status === 401) {
                     LogOutUser(setToken, setUserId, setUserData);
-                }            }
+                }            
+            }
         };
 
         fetchUserArticles();
