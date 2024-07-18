@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useToken } from '../../context/UseToken';
-import './style.css';
-import {UserInfo} from '../../utils';
+import styles from './style.module.css';
+import { UserInfo } from '../../utils';
 
 
 
@@ -14,7 +14,8 @@ export default function Login() {
         password: "@Arthur0017",
     })
 
-
+    // email: "arthur@gmail.com",
+    // password: "@Arthur0017",
 
 
     const Subbimt = () => {
@@ -57,29 +58,50 @@ export default function Login() {
     }
 
     return (
-        <div className="Body">
-            <div className="container">
-                <div className="inputsContainer">
-                    <div className="titlepage">
-                        Login
-                        <div className="subtitle">Entre com seus dados e tenha acesso a um mundo de possibilidades.</div>
-                    </div>
+        <div className={styles.Body}>
+            <div className={styles.Main}>
+            <div className={styles.Conainerimage}>
+                    <div className={styles.Image}>
+                        <div className={styles.ImageTitle}>
+                                Feed
+                        </div>
+                        <div className={styles.subtitle}>Entre e tenha acesso a um mundo de possibilidades e publicações escolhidas para você</div>
 
-                    <div className="conteinerInpits">
-                        <input type='email' onChange={(e) => setValues({ ...values, email: e.target.value })} placeholder='E-mail' className='inputLogin' />
-                        <div className="error">{error && <div>{error.email}</div>}</div>
                     </div>
-
-                    <div className="conteinerInpits">
-                        <input type='password' onChange={(e) => setValues({ ...values, password: e.target.value })} placeholder='Senha' className='inputLogin' />
-                        <div className="error">{error && <div>{error.password}</div>}</div>
-                    </div>
-
-                    <div className="conteinerButton">
-                        <button className='buttonlogin' onClick={Subbimt}>Entrar</button>
-                    </div>
-                    <div className="forgot">Não é membro? <a href="/cadastro" className="sing">Cadastre-se </a></div>
                 </div>
+                <div className={styles.ConatinerInputsMain}>
+                    
+                <div className={styles.container}>
+                    <div className={styles.inputsContainer}>
+                        <div className={styles.ConatinerTitlepage}>
+                            <div className={styles.titlepage}>
+                                Entre com sua Conta
+                            </div>
+                            <div className={styles.forgot}>Não é membro?
+                                <a href="/cadastro" className="sing"> Cadastre-se</a>
+                            </div>
+                        </div>
+                        <div className={styles.conatiner}>
+                            
+                        <div className={styles.conteinerInpits}>
+                            <input type='email' onChange={(e) => setValues({ ...values, email: e.target.value })} placeholder='E-mail' className={styles.inputLogin} />
+                            <div className={styles.error}>{error && <div>{error.email}</div>}</div>
+                        </div>
+
+                        <div className={styles.conteinerInpits}>
+                            <input type='password' onChange={(e) => setValues({ ...values, password: e.target.value })} placeholder='Senha' className={styles.inputLogin} />
+                            <div className={styles.error}>{error && <div>{error.password}</div>}</div>
+                        </div>
+                        </div>
+
+                        <div className={styles.conteinerButton}>
+                            <button className={styles.buttonlogin} onClick={Subbimt}>Entrar</button>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+            
             </div>
         </div>
     )
