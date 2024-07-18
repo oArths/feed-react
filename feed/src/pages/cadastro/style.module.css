@@ -1,0 +1,177 @@
+.Body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+
+}
+
+.Main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 90%;
+    height: 90%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    min-height: 500px;
+    height: 50vh;
+    min-width: 400px;
+    width: 40%;
+}
+
+.ConatinerInputsMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+}
+
+.Conainerimage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 400px;
+    max-width: 600px;
+    width: 50%;
+    height: 100vh;
+}
+
+.Image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 90%;
+    width: 100%;
+    background-color: black;
+    border-radius: 5px;
+    gap: 20px;
+}
+
+.ImageTitle {
+    margin-top: 200px;
+    font-weight: Bold;
+    font-size: 50px;
+    width: 70%;
+    color: white;
+}
+
+.ConatinerTitlepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+}
+
+.titlepage {
+    display: flex;
+    flex-direction: column;
+    font-weight: semiBold;
+    font-size: 35px;
+    width: 400px;
+    gap: 10px;
+
+}
+
+.forgotCadastro {
+    width: 400px;
+    font-size: 14px;
+    color: #acabab;
+
+
+}
+
+.forgotCadastro a{
+    color: black;
+    text-decoration: none;
+}
+
+
+.subtitle {
+    width: 70%;
+    font-weight: lighter;
+    font-size: 20px;
+    color: #acabab;
+}
+
+.conatiner {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    gap: 40px;
+    width: 400px;
+
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    height: 80%;
+
+}
+
+.conteinerInpits {
+    width: 400px;
+    height: 40px;
+}
+
+.inputLogin {
+    width: 95%;
+    padding: 10px;
+    height: 20px;
+    border-radius: 5px;
+    border: 0.5px solid #acabab;
+    outline: none;
+    color: black;
+}
+
+.error {
+    font-size: 12px;
+    color: red;
+}
+
+.title {
+    font-weight: normal;
+}
+
+.conteinerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttonlogin {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 400px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: semibold;
+    color: white;
+    background-color: black;
+    transition: all 0.3s ease;
+
+    &:active {
+        width: 405px;
+    }
+}
