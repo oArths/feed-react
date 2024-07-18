@@ -2,6 +2,7 @@ import styles from "./style.module.css"
 import { useState } from "react";
 import { useToken } from "../../../context/UseToken"
 import {UserInfo} from '../../../utils/';
+import UserDefault from "../../../assests/imgs/userdefault.jpg"
 
 
 export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, UserValueName,
@@ -64,7 +65,8 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
     const openFileSelector = () => {
         document.querySelector(".input-files").click();
     };
-
+    const baseURL = "http://127.0.0.1:8000/img/user/";
+    console.log(image);
     if (isOpen) {
         return (
 
@@ -72,7 +74,12 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
                 <div className={styles.Container} onClick={(e) => { e.stopPropagation() }}>
                     <div className={styles.ConatinerImage}>
                         <div className={styles.UserPhoto} onClick={openFileSelector}>
-                            <img className={styles.ImgeUser} src={image.url} />
+                            {image.url === null && image.file === null ?(
+                            <img className={styles.ImgeUser} src={UserDefault} />
+                            ) : 
+                            (<img className={styles.ImgeUser} src={image.url === null ? image.blob : baseURL + image.url   } />
+                            )
+                            }
                         </div>
                     </div>
                     <input type="file"
@@ -82,8 +89,8 @@ export default function ModalUpdateuser({ isOpen, onClickBlur, setImage, image, 
                         onChange={({ target: { files } }) => {
                             if (files[0] && files) {
                                 const imageFile = files[0];
-                                const imageUrl = URL.createObjectURL(imageFile);
-                                setImage({ file: imageFile, url: imageUrl });
+                                const imageBlob = URL.createObjectURL(imageFile);
+                                setImage({ file: imageFile, url: null, blob : imageBlob });
                             }
                         }}
                     />
